@@ -2,15 +2,134 @@
     font-family: 'Bodoni';
     src: url('./fonts/Bodoni-Bold.ttf');
 }
-h1, h2, h3, h4 {
-    font-family: Bodoni;
-    font-size: 2.5em;
-    text-shadow: 1px 1px 0px #fff, 2px 2px 0px #000000;
-    color: #000000;
+
+@font-face {
+    font-family: 'Bodoni-Bold';
+    src: url('./fonts/Bodoni-Bold2.ttf');
+}
+
+@font-face {
+    font-family: 'Old';
+    src: url('./fonts/Old.otf');
+}
+
+@font-face {
+    font-family: RF;
+    src: url('./fonts/RF.woff2');
 }
 body {
-    font-family: Avenir;
+    font-family: Helvetica, Avenir;
 }
+
+:root {
+    --nav-color: rgb(0, 0, 0);
+}
+
+h1, h2, h3, h4 {
+    font-size: 2.5em;
+}
+.bodoni {
+    font-family: Bodoni;
+}
+.bodoni-bold {
+    font-family: Bodoni-Bold;
+}
+.bodoni-light {
+    font-family: Bodoni;
+    text-shadow: 1px 1px 0px #000, 2px 2px 0px #fff;
+    color: #fff;
+}
+.bodoni-dark {
+    font-family: Bodoni;
+    text-shadow: 1px 1px 0px #fff, 2px 2px 0px #000;
+    color: #000;
+}
+.rf {
+    font-family: RF;
+}
+.white {
+    color: #fff;
+}
+.black {
+    color: #000;
+}
+.f-300 {
+    font-size: 300%;
+}
+.f-250 {
+    font-size: 250%;
+}
+.f-200 {
+    font-size: 200%;
+}
+.f-150 {
+    font-size: 150%;
+}
+.blue-grad {
+    background: linear-gradient(90deg, #0b273e, #194971);
+    border: none;
+    color: white;
+}
+.red-grad {
+    background: linear-gradient(90deg, rgb(139, 31, 31), #711919);
+    border: none;
+    color: white;
+}
+.blue {
+    background: -webkit-linear-gradient(90deg, #0b273e, #194971);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .nav-item {
     font-size: 1.25em;
+    font-weight: bold;
+}
+.nav-link .nav-link.active {
+    color: var(--nav-color);
+}
+
+.nav-link {
+    color: var(--nav-color);
+}
+
+.navbar-nav .nav-link.active, .navbar-nav .show>.nav-link {
+    color: var(--nav-color);
+}
+
+.nav-body {
+    /* background: linear-gradient(90deg, #0b3e27, #197149); */
+    /* background: linear-gradient(90deg, #0b273e, #194971); */
+    border-radius: .25em;
+    background: white;
+}
+
+.card-img {
+    background-color: #faf8f6;
+}
+
+.card {
+    border: none;
+}
+
+#banner {
+    background-image: url('./images/banner.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 300px; /* Adjust this value to your desired fixed height */
+    width: 100%;
+  }
+
+.navbar {
+    background-color: transparent;
+}
+
+.material-symbols-outlined {
+  background: linear-gradient(90deg, rgb(139, 31, 31), #711919);
+  border-radius: 50%;
+  padding: 5px;
+  margin-left: 10px;
+  font-size: 16px;
+  color: white;
 }
