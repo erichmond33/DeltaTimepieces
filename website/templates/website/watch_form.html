@@ -1,0 +1,36 @@
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label for="formFile" class="form-label">Image</label>
+        <input class="form-control" type="file" id="formFile" name="image" required>
+    </div>
+
+    <label class="form-label">Name</label>
+    <div class="mb-3">
+        <input type="text" class="form-control" placeholder="Ex. Rolex OP Date reference 1501" name="name" required>
+    </div>
+
+    <label for="" class="form-label">Price</label>
+    <div class="input-group mb-3">
+        <span class="input-group-text">$</span>
+        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Ex. 10000" name="price" required pattern="[0-9]+" required>
+        <span class="input-group-text">.00</span>
+    </div>
+
+    <label class="form-label">Year</label>
+    <div class="mb-3">
+        <input type="text" class="form-control" placeholder="Ex. 1996" name="year" required pattern="\d{4}" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    <button class="btn btn-secondary mt-2" id="autofill">Autofill</button>
+</form>
+
+<script>
+    document.getElementById('autofill').addEventListener('click', () => {
+        document.querySelector('input[name="name"]').value = 'Rolex OP Date reference 1501';
+        document.querySelector('input[name="price"]').value = '10000';
+        document.querySelector('input[name="year"]').value = '1996';
+    });
+</script>

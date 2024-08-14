@@ -1,0 +1,17 @@
+{% extends "website/layout.html" %}
+
+{% block body %}
+    
+
+    <div class="container" id="form-container">
+        <h2>Inventory</h2>
+        <div class="row">
+            {% for watch in watches %}
+                <div class="col-lg-4 col-sm-4 col-6">
+                    {% include 'website/watch.html' with watch=watch %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "website/layout.html" %}
+{% load static %}
+
+{% block body %}
+    
+
+    <div class="container" id="form-container">
+        <div class="row">
+            <div id="form">
+                <div class="col">
+                    <h2 class="feature">Add a watch to inventory</h2>
+                       {% include 'website/watch_form.html' %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
