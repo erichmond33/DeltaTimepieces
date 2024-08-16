@@ -11,15 +11,14 @@
     {% block head %}
     {% endblock %}
 </head>
-<body>
-    
-    <nav class="navbar navbar-expand-lg " id="nav">
+<body class="{% block body-class %} {% endblock %}">
+    <nav class="navbar navbar-expand-lg border-bottom" id="nav">
         <div class="container-fluid mx-4">
         <a class="navbar-brand white d-flex align-items-center" href="#">
-            <img src="{% static 'website/images/logo.svg' %}" alt="logo" width="50" class="d-inline-block align-text-top">
-            <span class="ms-1 fs-1 bodoni-light">
+            <img id="logo" src="{% static 'website/images/logo-full.svg' %}" alt="logo" width="300" class="d-inline-block align-text-top invert">
+            <!-- <span class="ms-1 fs-1 bodoni-light">
                 ELTA TIMEPIECES
-            </span>
+            </span> -->
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -31,15 +30,21 @@
             </div>
             <div class="offcanvas-body">
 
-                    <ul class="navbar-nav nav-body justify-content-end align-items-center ms-auto px-3 py-2 font-monospace">
+                    <ul class="navbar-nav nav-body justify-content-end align-items-center ms-auto px-3 py-2 old">
 
                             <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
                             </li>
                             <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
+                            <a class="nav-link" href="{% url 'add' %}">Add</a>
                             </li>
-                            <li class="nav-item dropdown">
+                            <li class="nav-item">
+                            <a class="nav-link" href="#">Shop</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                            </li>
+                            <!-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Dropdown
                             </a>
@@ -50,7 +55,7 @@
                                 <hr class="dropdown-divider">
                                 </li>
                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
+                            </ul> -->
                             </li>
                             
                             <!-- <form class="d-flex mt-3" role="search">
@@ -68,6 +73,4 @@
     {% endblock %}
     {% csrf_token %}
 </body>
-<script>
-</script>
 </html>

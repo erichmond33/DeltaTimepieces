@@ -26,4 +26,5 @@ urlpatterns = [
     path("add/", add_view, name="add"),
     path("edit/<int:watch_id>/", edit_view, name="edit"),
     path("inventory/", inventory_view, name="inventory"),
+    path("checkout/", checkout_view, name="checkout"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
