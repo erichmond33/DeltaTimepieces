@@ -96,6 +96,12 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+.color-inherit {
+    color: inherit;
+}
+.color-inherit:hover {
+    color: inherit;
+}
 .mw-lg {
     max-width: 960px;
 }
@@ -161,6 +167,7 @@ body {
 }
 #logo.invert {
     filter: invert(1);
+    transition: filter 0.5s ease;
 }
 
 .material-symbols-outlined {
@@ -192,18 +199,14 @@ body {
     border-style: double; */
 }
 
-.row {
-    --bs-gutter-y: 1.25rem;
-}
-
 /* .scrollable-row > div:last-child > div {
     padding-right: 0 !important;
   } */
 .scrollable-row {
     margin-left: -.5rem !important;
     margin-right: -.5rem !important;
+    scrollbar-width: none;
 }
-
 
 #about {
     background-color: rgb(229, 235, 238);

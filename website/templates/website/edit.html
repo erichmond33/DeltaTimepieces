@@ -1,6 +1,10 @@
 {% extends "website/layout.html" %}
 {% load static %}
 
+{% block body-class %}
+bg-grey
+{% endblock %}
+
 {% block body %}
     
 <div class="container mt-5 pt-5" id="form-container">
@@ -12,12 +16,42 @@
 
         {% if watch %}
         <div class="col-md-6 col-12">
-            <h2>Preview</h2>
             <div class="col-xl-10 col-12 mx-auto">
-                {% include 'website/watch.html' with watch=watch %}
+                {% include 'website/watch_card.html' with watch=watch %}
+
+                <div class="row g-1">
+                {% for image in watch.secondary_images.all %}
+                    <div class="col-3">
+                        <img src="{{ image.image.url }}" class="img-fluid mt-3 square-img rounded" alt="Image">
+                            <form action="{% url 'delete_image' image.id %}" method="post">
+                                {% csrf_token %}
+                                <button class="btn btn-danger btn-sm mt-2" type="submit">Delete</button>
+                            </form>
+                    </div>
+                {% endfor %}
+                </div>
             </div>
         </div>
         {% endif %}
+        
+        <hr class="my-5">
+        <div class="col-12 text-center mt-0 mb-5">
+            <a class="btn btn-danger" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Delete watch
+            </a>
+            <ul class="dropdown-menu">
+                <div class="d-flex justify-content-center">
+                    Are you sure?
+                </div>
+                <hr class="dropdown-divider">
+                <div class="d-flex justify-content-center">
+                    <form action="{% url 'delete_watch' watch.id %}" method="post">
+                        {% csrf_token %}
+                        <button class="btn btn-danger" type="submit">Yes</button>
+                    </form>
+                </div>
+            </ul>
+        </div>
     </div>
 </div>
 

@@ -16,7 +16,7 @@
                     <p class="white fs-5">
                         Explore our latest collection of high-quality timepieces
                     </p>
-                    <button class="px-5 py-2 btn btn-light rounded old cta-dark fs-5">
+                    <button class="px-5 py-2 btn btn-light rounded old cta-light fs-5">
                         Shop now
                     </button>
                 </div>
@@ -35,22 +35,22 @@
 
 
 <div class="container mt-5">
-    <div class="d-flex align-items-center mb-4">
+    <div class="d-flex align-items-center mb-4 justify-content-between">
         <div class="d-flex">
-            <h2 class="fs-3">Inventory</h2>
+            <p class="fs-3">Inventory</p>
         </div>
         <div class="d-flex justify-content-end w-100 align-items-center">
-            <div class="d-flex cta-light p-2">
+            <div class="d-flex cta-light p-2 rounded">
                 <p class="m-0 fs-6"><a class="blue" href="{% url 'index' %}">Shop all</a></p>
                 <span class="material-symbols-outlined">arrow_forward_ios</span>
             </div>
         </div>
     </div>
-    <div class="d-flex flex-md-wrap overflow-auto scrollable-row" style="scrollbar-width: none;">
+    <div class="d-flex flex-md-wrap overflow-auto scrollable-row">
         {% for watch in watches %}
             <!-- <div class="col-lg-4 col-sm-4 col-6"> -->
             <div class="col-md-4 col-8 px-2">
-                {% include 'website/watch.html' %}
+                {% include 'website/watch_card.html' %}
             </div>
         {% endfor %}
     </div>
@@ -140,12 +140,17 @@ d
     document.addEventListener('DOMContentLoaded', function () {
         var nav = document.getElementById('nav');
         var logo = document.getElementById('logo');
+        nav.classList.remove('sticky-top');
+        nav.classList.add('fixed-top');
 
-        nav.classList.remove('scrolled');
-        logo.classList.remove('invert');
+        // wait .5 seconds
+        setTimeout(function() {
+            nav.classList.remove('scrolled');
+            logo.classList.remove('invert');
+        }, 500);
 
         window.addEventListener('scroll', function () {
-            if (window.scrollY > 5) {
+            if (window.scrollY > 150) {
                 nav.classList.add('scrolled');
                 logo.classList.add('invert');
             } else {

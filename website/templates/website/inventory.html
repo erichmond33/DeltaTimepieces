@@ -7,8 +7,8 @@
         <h2>Inventory</h2>
         <div class="row">
             {% for watch in watches %}
-                <div class="col-lg-4 col-sm-4 col-6">
-                    {% include 'website/watch.html' with watch=watch %}
+                <div class="col-lg-4 col-md-4 col-6">
+                    {% include 'website/watch_card.html' with watch=watch %}
                 </div>
             {% endfor %}
         </div>

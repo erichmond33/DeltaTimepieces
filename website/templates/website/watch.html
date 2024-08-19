@@ -1,20 +1,39 @@
-{% load static %}
+{% extends "website/layout.html" %}
 {% load humanize %}
 
-<div class="card">
-    <!-- <img src="{% static '{{ watch.image }}' %}" alt="Product image" class="card-img card-img-top"> -->
-    <div class="img-container">
-        <img src="{{ watch.image.url }}" alt="Product image" class="card-img card-img-top square-img img-zoom object-fit-cover">
-    </div>
-    <div class="card-body px-0">
-        <p class="card-title old fs-5 mb-0">{{ watch.name }}</p>
-        <div class="d-flex justify-content-between">
-            <p class="card-text m-0 text-muted">${{ watch.price|intcomma }} • {{ watch.year }}</p>
-            <!-- <p class="card-text m-0">1967</p> -->
+{% block body %}
+    
+    <div class="container" id="form-container">
+        <div class="row pt-5">
+            <div class="col-lg-7 col-12">
+                <div class="d-flex flex-lg-wrap overflow-auto scrollable-row">
+                    {% if images|length == 1 %}
+                        {% for image in images %}
+                        <div class="col-xl-10 col-lg-12 col-md-8 col-9 p-xxl-4 p-2 mx-auto">
+                            <img src="{{ image.url }}" alt="Product image" class=" card-img img-fluid square-img rounded">
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        {% for image in images %}
+                        <div class="col-xl-6 col-lg-12 col-9 p-xxl-4 p-2">
+                            <img src="{{ image.url }}" alt="Product image" class="card-img img-fluid square-img rounded">
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-5 col-12">
+                <div class="sticky-lg-top" style="top: 200px;">
+                    <p class="fs-2 old mb-0 text-uppercase">{{ watch.name }}</p>
+                    <p class="fs-4 mb-4 text-muted">{{ watch.year }}</p>
+                    <h3 class="fs-3">${{ watch.price|intcomma }}</h3>
+                    <hr>
+                    <button class="py-2 btn btn-dark rounded old cta-dark fs-5 w-100">
+                        Add to cart
+                    </button>
+                </div>
+            </div>
         </div>
-        <!-- <div class="d-flex justify-content-between">
-            <p class="card-text m-0"><small class="text-muted">$10,000</small></p>
-            <p class="card-text m-0"><small class="text-muted">1967</small></p>
-        </div> -->
     </div>
-</div>
+
+{% endblock %}
