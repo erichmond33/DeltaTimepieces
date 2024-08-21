@@ -2,21 +2,26 @@
 {% load humanize %}
 
 <a href="{% url 'watch' watch.id %}" class="text-decoration-none color-inherit">
-    <div class="card">
-        <!-- <img src="{% static '{{ watch.image }}' %}" alt="Product image" class="card-img card-img-top"> -->
+    <div class="card product-card mb-3">
         <div class="img-container">
-            <img src="{{ watch.image.url }}" alt="Product image" class="card-img card-img-top square-img img-zoom object-fit-cover">
+            <img src="{{ watch.image.url }}" alt="Product image"
+                class="card-img card-img-top square-img img-zoom object-fit-cover">
+            <a href="{% url 'add_to_cart' watch.id %}" class="add-to-cart">
+                <button type="submit" class="p-1 btn btn-light rounded old cta-light fs-6">
+                    <img src="{% static 'website/images/cart.svg' %}" alt="Add to cart">
+                </button>
+            </a>
         </div>
-        <div class="card-body px-0">
-            <p class="card-title old fs-5 mb-0">{{ watch.name }}</p>
-            <div class="d-flex justify-content-between">
-                <p class="card-text m-0 text-muted">${{ watch.price|intcomma }} • {{ watch.year }}</p>
-                <!-- <p class="card-text m-0">1967</p> -->
-            </div>
-            <!-- <div class="d-flex justify-content-between">
-                <p class="card-text m-0"><small class="text-muted">$10,000</small></p>
-                <p class="card-text m-0"><small class="text-muted">1967</small></p>
-            </div> -->
+        <div class="card-body px-0 pb-0">
+            <a href="{% url 'watch' watch.id %}" class="text-decoration-none color-inherit">
+                <p class="card-title old fs-5 mb-0">{{ watch.name }}</p>
+                <div class="d-flex justify-content-between">
+                    <p class="card-text m-0 text-muted">${{ watch.price|intcomma }} • {{ watch.year }}</p>
+                </div>
+            </a>
+        </div>
+        <div class="position-absolute top-0 end-0">
+            {% include 'website/edit_button.html' %}
         </div>
     </div>
 </a>

@@ -28,11 +28,16 @@
                     <p class="fs-4 mb-4 text-muted">{{ watch.year }}</p>
                     <h3 class="fs-3">${{ watch.price|intcomma }}</h3>
                     <hr>
-                    <button class="py-2 btn btn-dark rounded old cta-dark fs-5 w-100">
-                        Add to cart
-                    </button>
+                    <form action="{% url 'add_to_cart' watch.id %}" method="post" class="w-100">
+                        {% csrf_token %}
+                        <input type="hidden" name="watch_id" value="{{ watch.id }}">
+                        <button type="submit" class="py-2 btn btn-dark rounded old cta-dark fs-5 w-100">
+                          Add to cart
+                        </button>
+                    </form>
                 </div>
             </div>
+            {% include 'website/delete_watch.html' %}
         </div>
     </div>
 

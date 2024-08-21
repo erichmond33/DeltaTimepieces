@@ -1,0 +1,21 @@
+{% if request.user.username == "aj" %}
+<div class="col-12 text-center my-5">
+    <div class="alert alert-danger">
+        <a class="btn btn-danger" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Delete watch
+        </a>
+        <ul class="dropdown-menu">
+            <div class="d-flex justify-content-center">
+                Are you sure?
+            </div>
+            <hr class="dropdown-divider">
+            <div class="d-flex justify-content-center">
+                <form action="{% url 'delete_watch' watch.id %}" method="post" class="my-3">
+                    {% csrf_token %}
+                    <button class="btn btn-danger" type="submit">Yes, delete</button>
+                </form>
+            </div>
+        </ul>
+    </div>
+</div>
+{% endif %} 

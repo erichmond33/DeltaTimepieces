@@ -1,0 +1,5 @@
+{% if request.user.username == "aj" %}
+<a href="{% url 'edit' watch.id %}">
+    <button class="btn btn-secondary py-0" type="submit">Edit</button>
+</a>
+{% endif %}
