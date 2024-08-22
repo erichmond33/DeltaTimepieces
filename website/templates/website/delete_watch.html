@@ -1,4 +1,4 @@
-{% if request.user.username == "aj" %}
+{% if request.user.is_superuser %}
 <div class="col-12 text-center my-5">
     <div class="alert alert-danger">
         <a class="btn btn-danger" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -18,4 +18,4 @@
         </ul>
     </div>
 </div>
-{% endif %} 
+{% endif %}

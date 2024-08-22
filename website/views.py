@@ -6,8 +6,9 @@ from datetime import datetime
 # Create your views here.
 def index(request):
     # get the 6 latest watches
-    watches = Watch.objects.all().order_by('-id')[:6]
-    return render(request, 'website/index.html', {'watches': watches})
+    newest_watches = Watch.objects.all().order_by('-id')[:3]
+    our_picks = Watch.objects.all().order_by('-price')[:3]
+    return render(request, 'website/index.html', {'newest_watches': newest_watches, 'our_picks': our_picks})
 
 def add_view(request):
     if request.method == 'POST':

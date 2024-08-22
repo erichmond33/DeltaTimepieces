@@ -1,4 +1,4 @@
-{% if request.user.username == "aj" %}
+{% if request.user.is_superuser %}
 <a href="{% url 'edit' watch.id %}">
     <button class="btn btn-secondary py-0" type="submit">Edit</button>
 </a>

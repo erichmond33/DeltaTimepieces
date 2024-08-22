@@ -10,13 +10,13 @@
                     {% if images|length == 1 %}
                         {% for image in images %}
                         <div class="col-xl-10 col-lg-12 col-md-8 col-9 p-xxl-4 p-2 mx-auto">
-                            <img src="{{ image.url }}" alt="Product image" class=" card-img img-fluid square-img rounded">
+                            <img src="{{ image.url }}" alt="Product image" class=" card-img img-fluid img-3x4 rounded">
                         </div>
                         {% endfor %}
                     {% else %}
                         {% for image in images %}
                         <div class="col-xl-6 col-lg-12 col-9 p-xxl-4 p-2">
-                            <img src="{{ image.url }}" alt="Product image" class="card-img img-fluid square-img rounded">
+                            <img src="{{ image.url }}" alt="Product image" class="card-img img-fluid img-3x4 rounded">
                         </div>
                         {% endfor %}
                     {% endif %}

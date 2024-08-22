@@ -1,4 +1,4 @@
-{% if request.user.username == "aj" %}
+{% if request.user.is_superuser %}
     <form action="{% url 'delete_watch' watch.id %}" method="post" class="my-3">
         {% csrf_token %}
         <button class="btn btn-danger" type="submit">Edit</button>

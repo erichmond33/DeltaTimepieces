@@ -184,7 +184,12 @@ body {
   color: white;
 }
 
-.square-img {
+.img-1x1 {
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+.img-3x4 {
     aspect-ratio: 3/4;
     object-fit: cover;
 }

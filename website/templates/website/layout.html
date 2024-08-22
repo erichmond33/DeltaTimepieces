@@ -14,63 +14,81 @@
 <body class="{% block body-class %} {% endblock %}">
     <nav class="navbar navbar-expand-lg sticky-top scrolled py-0" id="nav">
         <div class="container-fluid px-md-4">
-        <a class="navbar-brand white d-flex align-items-center" href="{% url 'index' %}">
-            <picture>
-                <source media="(max-width: 576px)" srcset="{% static 'website/images/logo-full.svg' %}" width="250">
-                <img id="logo" src="{% static 'website/images/logo-full.svg' %}" alt="logo" width="375" class="d-inline-block align-text-top invert">
-            </picture>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-            <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <a class="navbar-brand white d-flex align-items-center" href="{% url 'index' %}">
+                <picture>
+                    <!-- <source media="(max-width: 410px)" srcset="{% static 'website/images/logo-full.svg' %}" width="225"> -->
+                    <source media="(max-width: 576px)" srcset="{% static 'website/images/logo-full.svg' %}" width="250">
+                    <img id="logo" src="{% static 'website/images/logo-full.svg' %}" alt="logo" width="375"
+                        class="d-inline-block align-text-top invert">
+                </picture>
+            </a>
+            <div>
+                <button class="navbar-toggler invert" id="menu" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                    aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <img src="{% static 'website/images/menu2.svg' %}" alt="Menu" width="32">
+                </button>
+                <button type="button" id="cart" class="navbar-toggler invert" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <img src="{% static 'website/images/cart2.svg' %}" alt="Cart" width="32">
+                </button>
             </div>
-            <div class="offcanvas-body">
-
-                    <ul class="navbar-nav nav-body justify-content-end align-items-center ms-auto px-3 py-2 old">
-
-                            <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
-                            </li>
-                            <li class="nav-item">
+    
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav nav-body justify-content-end align-items-center ms-auto px-0 py-2 old">
+    
+                        <li class="nav-item">
+                            <a class="nav-link active ps-lg-3 ps-0" aria-current="page" href="{% url 'index' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{% url 'add' %}">Add</a>
-                            </li>
-                            <li class="nav-item">
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{% url 'inventory' %}">Inventory</a>
-                            </li>
-                            <li class="nav-item">
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="#">Shop</a>
-                            </li>
-                            <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
-                            </li>
-                            <!-- <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link pe-lg-3 pe-0" href="#">Contact</a>
+                        </li>
+                        <li class="nav-item border-start border-secondary-subtle">
+                            <a class="btn nav-link invert px-3" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <img src="{% static 'website/images/cart2.svg' %}" alt="Cart" width="25">
                             </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li>
-                                <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul> -->
-                            </li>
-                            
-                            <!-- <form class="d-flex mt-3" role="search">
-                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                                <button class="btn btn-outline-light" type="submit">Search</button>
-                            </form> -->
-                        </ul>
-                        
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
+    
         </div>
     </nav>
+      
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen-sm-down modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    {% include 'website/cart_header.html' %}
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mx-md-4 mx-0">
+                        {% include 'website/cart_body.html' %}
+                    </div>
+                    {% if cart|length > 0 %}
+                    <a href="{% url 'checkout' %}">
+                        <button class="mt-3 py-2 btn btn-dark rounded old cta-dark fs-5 w-100">
+                            Checkout
+                        </button>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
 
     {% block body %}    
     {% endblock %}
