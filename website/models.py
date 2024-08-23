@@ -10,6 +10,9 @@ class Watch(models.Model):
     year = models.IntegerField()
     image = models.ImageField(upload_to='images/')
     timestamp = models.DateTimeField(auto_now_add=True)
+    our_pick = models.BooleanField(default=False)
+    timeless = models.BooleanField(default=False)
+    rare_and_iconic = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name

@@ -27,12 +27,6 @@
     </div>
 </div>
 
-<div class="container-fluid pt-5 bg-light">
-    <div class="d-flex justify-content-center align-items-center p-5">
-        <p>This is a testamonial</p>
-    </div>
-</div>
-
 
 {% include 'website/category_section.html' with section_title="New arrivals" watches=newest_watches shop_all_url='inventory' %}
 
@@ -40,12 +34,9 @@
     <div class="row">
         <div class="col-md-6 col-12 pe-md-0 mt-md-4">
             <img src="{% static 'website/images/about.jpg' %}" alt="About us" id="about-img" class="img-fluid cover rounded-md-start-top img-1x1">
-            <!-- <h2 class="text-uppercase fs-2">
-                About us
-            </h2> -->
         </div>
         <div class="col-md-6 col-12 ps-md-0 mt-md-4 mt-0">
-            <div class="d-flex flex-column justify-content-center align-items-start h-100 p-5 bg-grey rounded-md-end-bottom">
+            <div class="d-flex flex-column justify-content-center align-items-start h-100 p-5 bg-pepsi rounded-md-end-bottom">
                 
                 <h2 class="text-uppercase fs-2">
                     About us
@@ -67,8 +58,322 @@
 
 {% include 'website/category_section.html' with section_title="Our picks" watches=our_picks shop_all_url='inventory' %}
 
-<div class="container my-5">
-d
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <img src="{% static 'website/images/open-back.jpg' %}" alt="About us" id="about-img" class="cover img-4x3 w-100 rounded">
+        </div>
+    </div>
+</div>
+
+{% include 'website/category_section.html' with section_title="Timeless" watches=timeless shop_all_url='inventory' %}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12 py-4 bg-pepsi rounded">
+            <p class="fs-2 black">Don't see what you are looking for?</p>
+            <p class="pb-3 black">Let us find it for you</p>
+            <form action="{% url 'index' %}" method="post" class="">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="name" required>
+                            <label for="name" class="black">Name</label>
+                            <div class="invalid-feedback">
+                                Please provide your name
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="form-floating">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="email"
+                                required>
+                            <label for="email" class="black">Email</label>
+                            <div class="invalid-feedback">
+                                Please provide a valid email
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-floating">
+                            <textarea class="form-control h-100" placeholder="Tell us what you want." id="message"
+                                name="message" rows="5" required></textarea>
+                            <label for="message" class="black">Message</label>
+                            <div class="invalid-feedback">
+                                Please provide a message
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% include 'website/category_section.html' with section_title="Rare & iconic" watches=rare_and_iconic shop_all_url='inventory' %}
+
+<div class="container-fluid mt-5 py-5 bg-pepsi mb-0">
+    <div class="container mb-0">
+
+        <div class="d-flex justify-content-center align-items-center">
+            <p>As featured in</p>
+        </div>
+        <hr>
+        <div class="row g-4">
+
+            <div class="col-md-2 col-4"><a
+                    href="https://www.popularmechanics.com/adventure/outdoor-gear/g38483922/best-hunting-jackets/"
+                    target="_blank">
+                    <div class="o-box o-box--3x2">
+                        <div class="o-nobox o-nobox--contain">
+                            <img loading="lazy" class="img-fluid"
+                                srcset="//duckcamp.com/cdn/shop/files/Popular_Mechanics.png?v=1698862435&amp;width=768 768w"
+                                src="//duckcamp.com/cdn/shop/files/Popular_Mechanics.png?v=1698862435&amp;width=768"
+                                sizes="" alt="" width="604" height="151">
+                        </div>
+                    </div>
+                </a></div>
+            <div class="col-md-2 col-4"><a href="https://gardenandgun.com/feature/gearing-up-for-the-blind/"
+                    target="_blank">
+                    <div class="o-box o-box--3x2">
+                        <div class="o-nobox o-nobox--contain">
+                            <img loading="lazy" class="img-fluid"
+                                srcset="//duckcamp.com/cdn/shop/files/garden_and_gun_logo.webp?v=1698862626&amp;width=768 768w"
+                                src="//duckcamp.com/cdn/shop/files/garden_and_gun_logo.webp?v=1698862626&amp;width=768"
+                                sizes="" alt="" width="911" height="140">
+                        </div>
+                    </div>
+                </a></div>
+            <div class="col-md-2 col-4"><a href="https://www.mensjournal.com/style/trucker-jackets" target="_blank">
+                    <div class="o-box o-box--3x2">
+                        <div class="o-nobox o-nobox--contain">
+                            <img loading="lazy" class="img-fluid"
+                                srcset="//duckcamp.com/cdn/shop/files/Men_s_Journal.png?v=1698862435&amp;width=768 768w"
+                                src="//duckcamp.com/cdn/shop/files/Men_s_Journal.png?v=1698862435&amp;width=768"
+                                sizes="" alt="" width="642" height="144">
+                        </div>
+                    </div>
+                </a></div>
+            <div class="col-md-2 col-4"><a
+                    href="https://gearjunkie.com/outdoor/hunt-fish/duck-camps-contact-system-review" target="_blank">
+                    <div class="o-box o-box--3x2">
+                        <div class="o-nobox o-nobox--contain">
+                            <img loading="lazy" class="img-fluid"
+                                srcset="//duckcamp.com/cdn/shop/files/GearJunkie.png?v=1698862435&amp;width=768 768w"
+                                src="//duckcamp.com/cdn/shop/files/GearJunkie.png?v=1698862435&amp;width=768" sizes=""
+                                alt="" width="1130" height="292">
+                        </div>
+                    </div>
+                </a></div>
+            <div class="col-md-2 col-4"><a
+                    href="https://www.gearpatrol.com/briefings/today-in-gear/g41830441/today-in-gear-11-01-2022/"
+                    target="_blank">
+                    <div class="o-box o-box--3x2">
+                        <div class="o-nobox o-nobox--contain">
+                            <img loading="lazy" class="img-fluid"
+                                srcset="//duckcamp.com/cdn/shop/files/Gear_Patrol.png?v=1698862435&amp;width=768 768w"
+                                src="//duckcamp.com/cdn/shop/files/Gear_Patrol.png?v=1698862435&amp;width=768" sizes=""
+                                alt="" width="741" height="115">
+                        </div>
+                    </div>
+                </a></div>
+            <div class="col-md-2 col-4"><a
+                    href="https://www.fieldandstream.com/gear/best-hunting-clothing-brands/#h-most-comfortable-duck-camp"
+                    target="_blank">
+                    <div class="o-box o-box--3x2">
+                        <div class="o-nobox o-nobox--contain">
+                            <img loading="lazy" class="img-fluid"
+                                srcset="//duckcamp.com/cdn/shop/files/F_S.png?v=1698862435&amp;width=768 768w"
+                                src="//duckcamp.com/cdn/shop/files/F_S.png?v=1698862435&amp;width=768" sizes="" alt=""
+                                width="401" height="166">
+                        </div>
+                    </div>
+                </a></div>
+
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mb-0 bg-black white old bg-grey">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg col-12 mx-auto">
+                <div class="d-flex justify-content-center align-items-center h-100 w-100">
+                    <img src="{% static 'website/images/logo.svg' %}" alt="Logo" class="img-fluid bg-black">
+                </div>
+            </div>
+            <div class="col-lg col-6">
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="s-footer__nav-block">
+                        <h4>
+                            Shop
+                        </h4>
+                        <nav>
+                            <ul>
+                                <li>
+                                    <a href="/collections/new-arrivals">
+                                        <span>New Arrivals</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/collections/all-mens">
+                                        <span>Mens</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/collections/duck-camp-womens-collection">
+                                        <span>Womens</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/collections/all-accessories">
+                                        <span>Accessories</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/products/gift-card">
+                                        <span>Gift Cards</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg col-6">
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="s-footer__nav-block">
+                        <h4>
+                            Help &amp; Services
+                        </h4>
+                        <nav>
+                            <ul>
+                                <li>
+                                    <a href="/pages/contact-us">
+                                        <span>Contact Us</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/pages/about-duck-camp">
+                                        <span>About Us</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/pages/faq">
+                                        <span>FAQ</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/pages/return-and-exchange-policy">
+                                        <span>Returns &amp; Exchanges</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/pages/catalog">
+                                        <span>Duck Camp Catalog</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="https://jobs.gusto.com/boards/duck-camp-llc-9b81455d-8ca1-4d7b-a60d-1969b1923776">
+                                        <span>Careers</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/pages/pro-deal-application">
+                                        <span>Pro Deal Application</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/pages/custom-embroidery">
+                                        <span>Corporate Sales</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg col-6">
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="s-footer__nav-block">
+                        <h4>
+                            Retail
+                        </h4>
+                        <nav>
+                            <ul>
+                                <li>
+                                    <a href="/pages/the-austin-shop">
+                                        <span>The Austin Shop</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/pages/the-houston-shop">
+                                        <span>The Houston Shop</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/pages/retail-partners">
+                                        <span>Retail Locator</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/pages/become-a-retailer">
+                                        <span>Become a Retailer</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg col-6">
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                
+                    <div class="">
+                        <h4>Call Us</h4>
+                        <a href="tel:7372707665">
+                            737-270-7665
+                        </a>
+                    </div>
+                    <div class="">
+                        <h4>Write Us</h4><a href="mailto:help@duckcamp.com">
+                            help@duckcamp.com
+                        </a>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="s-footer__kicker">
+        <div class="d-flex inline-flex justify-content-start align-items-center">
+            <div class="s-footer__kicker__copyright">
+                © Duck Camp 2024. All Rights Reserved.
+            </div>
+            <nav class="d-flex inline-flex justify-content-start align-items-center">
+                <ul>
+                    <li>
+                        <a href="#">
+                            Privacy Policy
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Terms &amp; Conditions
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/pages/accessibility-statement">
+                            Accessibility Statement
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -125,8 +430,6 @@ d
     document.addEventListener('DOMContentLoaded', function () {
         var nav = document.getElementById('nav');
         var logo = document.getElementById('logo');
-        var menu = document.getElementById('menu');
-        var cart = document.getElementById('cart');
 
         nav.classList.remove('sticky-top');
         nav.classList.add('fixed-top');
@@ -135,21 +438,15 @@ d
         setTimeout(function() {
             nav.classList.remove('scrolled');
             logo.classList.remove('invert');
-            menu.classList.remove('invert');
-            cart.classList.remove('invert');
         }, 500);
 
         window.addEventListener('scroll', function () {
             if (window.scrollY > 150) {
                 nav.classList.add('scrolled');
                 logo.classList.add('invert');
-                menu.classList.add('invert');
-                cart.classList.add('invert');
             } else {
                 nav.classList.remove('scrolled');
                 logo.classList.remove('invert');
-                menu.classList.remove('invert');
-                cart.classList.remove('invert');
             }
         });
     });

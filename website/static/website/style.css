@@ -44,6 +44,9 @@ body {
 .bg-grey {
     background-color: rgb(243, 243, 243);
 }
+.bg-pepsi {
+    background: linear-gradient(90deg, #ecedff, #fcfcff);
+}
 .bodoni {
     font-family: Bodoni;
 }
@@ -194,26 +197,49 @@ body {
     object-fit: cover;
 }
 
+.img-4x3 {
+    aspect-ratio: 6/3;
+    object-fit: cover;
+}
+
 .cta-light {
     box-shadow: 1px 1px 0px #000, 2px 2px 0px #fff, 3px 3px 0px #000;
-    color: #000;
+    /* color: #000; */
     /* border: 3px solid black;
     border-style: double; */
 }
 
 .cta-dark {
     box-shadow: 1px 1px 0px #000, 2px 2px 0px #fff, 3px 3px 0px #000;
-    color: #fff;
+    /* color: #fff; */
     /* border: 3px solid white;
     border-style: double; */
+}
+
+.cta-dark-inset {
+    box-shadow: inset -1px -1px 0 #000,
+    inset -2px -2px 0 #fff,
+    inset -3px -3px 0 #000;
+}
+
+.shop-all {
+    border-bottom: 3px transparent double;
+}
+
+.shop-all:hover {
+    border-bottom: 3px black double;
+}
+
+.container, .container-fluid {
+    margin-bottom: 100px;
 }
 
 /* .scrollable-row > div:last-child > div {
     padding-right: 0 !important;
   } */
 .scrollable-row {
-    margin-left: -.5rem !important;
-    margin-right: -.5rem !important;
+    margin-left: -1.5rem !important;
+    margin-right: -1.5rem !important;
     scrollbar-width: none;
 }
 
@@ -248,7 +274,8 @@ body {
 .img-container {
     position: relative;
     overflow: hidden;
-    border-radius: 0.25rem;
+    border-radius: 0;
+    background-color: rgb(242, 242, 242);
 }
 .img-zoom:hover {
     transform: scale(1.1);
@@ -272,7 +299,15 @@ body {
     aspect-ratio: 30/10;
     border-radius: .25rem;
 }
-
+@media (max-width: 991.98px) {
+    .scrollable-row {
+        margin-left: -.5rem !important;
+        margin-right: -.5rem !important;
+    }
+    .container, .container-fluid {
+        margin-bottom: 64px;
+    }
+}
 @media (max-width: 767.98px) {
     .rounded-md-start-top {
         border-top-left-radius: 0.25rem !important;
@@ -286,10 +321,6 @@ body {
         border-top-left-radius: 0 !important;
         border-bottom-left-radius: 0.25rem !important;
     }
-    /* .scrollable-row {
-        margin-right: 0 !important;
-        margin-left: 0 !important;
-    } */
     .product-card .add-to-cart {
         opacity: 1;
     }
