@@ -2,10 +2,8 @@
 {% load static %}
 
 {% block body %}
-    
+
 <div class="container-fluid" id="banner">
-    <!-- <img id="banner" src="{% static 'website/images/banner.jpg' %}" alt="Banner" class="img-fluid"> -->
-    
     <div class="row h-100">
         <div class="col-lg-6 col-12" id="banner1">
             <div class="d-flex justify-content-start align-items-end p-lg-5 p-3 h-100 w-100">
@@ -33,10 +31,10 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-6 col-12 pe-md-0 mt-md-4">
-            <img src="{% static 'website/images/about.jpg' %}" alt="About us" id="about-img" class="img-fluid cover rounded-md-start-top img-1x1">
+            <img src="{% static 'website/images/about.jpg' %}" alt="About us" id="about-img" class="img-fluid cover rounded-md-start-top img-1x1 shadow">
         </div>
         <div class="col-md-6 col-12 ps-md-0 mt-md-4 mt-0">
-            <div class="d-flex flex-column justify-content-center align-items-start h-100 p-5 bg-pepsi rounded-md-end-bottom">
+            <div class="d-flex flex-column justify-content-center align-items-start h-100 p-5 bg-pepsi rounded-md-end-bottom shadow">
                 
                 <h2 class="text-uppercase fs-2">
                     About us
@@ -61,7 +59,7 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-12">
-            <img src="{% static 'website/images/open-back.jpg' %}" alt="About us" id="about-img" class="cover img-4x3 w-100 rounded">
+            <img src="{% static 'website/images/open-back.jpg' %}" alt="About us" id="about-img" class="cover img-4x3 w-100 rounded shadow">
         </div>
     </div>
 </div>
@@ -70,7 +68,7 @@
 
 <div class="container mt-5">
     <div class="row">
-        <div class="col-12 py-4 bg-pepsi rounded">
+        <div class="col-12 py-4 bg-pepsi rounded shadow">
             <p class="fs-2 black">Don't see what you are looking for?</p>
             <p class="pb-3 black">Let us find it for you</p>
             <form action="{% url 'index' %}" method="post" class="">
