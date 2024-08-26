@@ -17,16 +17,30 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
+# Prod stuff
+import os
+from dotenv import load_dotenv
+load_dotenv('./website/keys.env')
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-w#50)*5v%fq+imax^95h1j+cew^+uzxw53!1x&t1sw1)48l5m#"
+SECRET_KEY = os.getenv('SECRET_KEY')
+SECURE_HSTS_SECONDS = 31536000
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True if os.getenv('DEBUG') == "True" else False if os.getenv('DEBUG') == "False" else None
+SECURE_SSL_REDIRECT = False if os.getenv('SECURE_SSL_REDIRECT') == "False" else True if os.getenv('SECURE_SSL_REDIRECT') == "True" else None
+SESSION_COOKIE_SECURE = False if os.getenv('SESSION_COOKIE_SECURE') == "False" else True if os.getenv('SESSION_COOKIE_SECURE') == "True" else None
+CSRF_COOKIE_SECURE = False if os.getenv('CSRF_COOKIE_SECURE') == "False" else True if os.getenv('CSRF_COOKIE_SECURE') == "True" else None
+SECURE_HSTS_INCLUDE_SUBDOMAINS = False if os.getenv('SECURE_HSTS_INCLUDE_SUBDOMAINS') == "False" else True if os.getenv('SECURE_HSTS_INCLUDE_SUBDOMAINS') == "True" else None
+SECURE_HSTS_PRELOAD = False if os.getenv('SECURE_HSTS_PRELOAD') == "False" else True if os.getenv('SECURE_HSTS_PRELOAD') == "True" else None
 
-ALLOWED_HOSTS = ["deltatimepiecesllc.com", "www.deltatimepiecesllc.com", "144.202.17.114"]
+if DEBUG == None:
+    DEBUG = True if os.getenv('DEBUG2') == "True" else False
+    SECURE_SSL_REDIRECT = False if os.getenv('SECURE_SSL_REDIRECT2') == "False" else True
+    SESSION_COOKIE_SECURE = False if os.getenv('SESSION_COOKIE_SECURE2') == "False" else True
+    CSRF_COOKIE_SECURE = False if os.getenv('CSRF_COOKIE_SECURE2') == "False" else True
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = False if os.getenv('SECURE_HSTS_INCLUDE_SUBDOMAINS2') == "False" else True
+    SECURE_HSTS_PRELOAD = False if os.getenv('SECURE_HSTS_PRELOAD2') == "False" else True
+
+ALLOWED_HOSTS = ["deltatimepiecesllc.com", "www.deltatimepiecesllc.com", "144.202.17.114", "127.0.0.1"]
 
 
 # Application definition
@@ -120,6 +134,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / 'static'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

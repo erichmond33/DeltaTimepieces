@@ -5,10 +5,10 @@
     <div class="card product-card mb-3">
         <div class="img-container">
             <img src="{{ watch.image.url }}" alt="Product image"
-                class="rounded-0 card-img card-img-top img-1x1 img-zoom object-fit-cover">
+                class="rounded-0 card-img card-img-top img-3x4 img-zoom object-fit-cover">
             
             <a href="{% url 'add_to_cart' watch.id %}" class="add-to-cart">
-                <button type="submit" class="p-1 btn btn-light rounded-pill old fs-6">
+                <button type="submit" class="border-dark-subtle border p-1 btn btn-light rounded-pill old fs-6">
                     <img src="{% static 'website/images/cart_add2.svg' %}" alt="Add to cart">
                 </button>
             </a>

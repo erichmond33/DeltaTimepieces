@@ -45,7 +45,9 @@ body {
     background-color: rgb(243, 243, 243);
 }
 .bg-pepsi {
-    background: linear-gradient(90deg, #ecedff, #fcfcff);
+    /* background: linear-gradient(90deg, #caae91, #fcfcff); */
+    /* background-color: #caae913d; */
+    background-color: black;
 }
 .bodoni {
     font-family: Bodoni;

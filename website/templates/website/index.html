@@ -31,19 +31,19 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-6 col-12 pe-md-0 mt-md-4">
-            <img src="{% static 'website/images/about.jpg' %}" alt="About us" id="about-img" class="img-fluid cover rounded-md-start-top img-1x1 shadow">
+            <img src="{% static 'website/images/about.jpg' %}" alt="About us" id="about-img" class="img-fluid cover -md-start-top img-1x1 ">
         </div>
         <div class="col-md-6 col-12 ps-md-0 mt-md-4 mt-0">
-            <div class="d-flex flex-column justify-content-center align-items-start h-100 p-5 bg-pepsi rounded-md-end-bottom shadow">
+            <div class="d-flex flex-column justify-content-center align-items-start h-100 p-5 bg-pepsi -md-end-bottom ">
                 
-                <h2 class="text-uppercase fs-2">
+                <h2 class="text-uppercase fs-1 white">
                     About us
                 </h2>
-                <p class="fs-6 text-muted">
+                <p class="fs-4 white">
                     We are a family-owned business that has been in the watch industry for over 50 years. We specialize in high-quality timepieces and offer a wide range of services including repairs, maintenance, and customizations.
                 </p>
                 <div class="d-flex justify-content-start align-items-center">
-                    <div class="d-flex cta-light p-2 rounded-pill">
+                    <div class="d-flex bg-light p-2 rounded-pill">
                         <p class="m-0 fs-6"><a class="blue" href="{% url 'index' %}">Shop all</a></p>
                         <span class="material-symbols-outlined">arrow_forward_ios</span>
                     </div>
@@ -59,7 +59,7 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-12">
-            <img src="{% static 'website/images/open-back.jpg' %}" alt="About us" id="about-img" class="cover img-4x3 w-100 rounded shadow">
+            <img src="{% static 'website/images/open-back3.jpg' %}" alt="About us" id="about-img" class="cover img-4x3 w-100  ">
         </div>
     </div>
 </div>
@@ -67,10 +67,10 @@
 {% include 'website/category_section.html' with section_title="Timeless" watches=timeless shop_all_url='inventory' %}
 
 <div class="container mt-5">
-    <div class="row">
-        <div class="col-12 py-4 bg-pepsi rounded shadow">
-            <p class="fs-2 black">Don't see what you are looking for?</p>
-            <p class="pb-3 black">Let us find it for you</p>
+    <div class="row bg-pepsi  py-5">
+        <div class="col-12 mx-auto mw-lg mt-0">
+            <p class="fs-2 white">Don't see what you are looking for?</p>
+            <p class="pb-3 white">Let us find it for you</p>
             <form action="{% url 'index' %}" method="post" class="">
                 {% csrf_token %}
                 <div class="row">
@@ -111,11 +111,11 @@
 
 {% include 'website/category_section.html' with section_title="Rare & iconic" watches=rare_and_iconic shop_all_url='inventory' %}
 
-<div class="container-fluid mt-5 py-5 bg-pepsi mb-0">
+<div class="container-fluid mt-5 py-5 bg-grey mb-0">
     <div class="container mb-0">
 
         <div class="d-flex justify-content-center align-items-center">
-            <p>As featured in</p>
+            <p class="fs-2">As featured in</p>
         </div>
         <hr>
         <div class="row g-4">
@@ -195,156 +195,79 @@
 
 <div class="container-fluid mb-0 bg-black white old bg-grey">
     <div class="container">
-        <div class="row">
-            <div class="col-lg col-12 mx-auto">
-                <div class="d-flex justify-content-center align-items-center h-100 w-100">
-                    <img src="{% static 'website/images/logo.svg' %}" alt="Logo" class="img-fluid bg-black">
+        <div class="row py-5">
+            <div class="col-lg-4 col-6">
+                <div class="d-flex justify-content-start flex-column">
+                    <h2>
+                        Directory
+                    </h2>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="{% url 'index' %}">
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'inventory' %}">
+                                Shop
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <div class="col-lg col-6">
+            <div class="col-lg-4 col-6">
+                <div class="d-flex justify-content-start flex-column">
+                    <h2>
+                        Get in touch
+                    </h2>
+                    <ul class="list-unstyled g-4">
+                        <li>
+                            <a href="tel:555-555-5555">
+                                Phone: 555-555-5555
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:deltatimepicesllc@gmail.com">
+                                Email: deltatimepieces@gmail.com
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Address: 225 S Main St, Jonesboro, AR 72405
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-6">
+                <div class="d-flex justify-content-start flex-column">
+                    <h2>
+                        Follow Us
+                    </h2>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="tel:555-555-5555">
+                                555-555-5555
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-12 mx-auto">
                 <div class="d-flex justify-content-center align-items-center">
-                    <div class="s-footer__nav-block">
-                        <h4>
-                            Shop
-                        </h4>
-                        <nav>
-                            <ul>
-                                <li>
-                                    <a href="/collections/new-arrivals">
-                                        <span>New Arrivals</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/collections/all-mens">
-                                        <span>Mens</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/collections/duck-camp-womens-collection">
-                                        <span>Womens</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/collections/all-accessories">
-                                        <span>Accessories</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/products/gift-card">
-                                        <span>Gift Cards</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg col-6">
-                <div class="d-flex justify-content-center align-items-center">
-                    <div class="s-footer__nav-block">
-                        <h4>
-                            Help &amp; Services
-                        </h4>
-                        <nav>
-                            <ul>
-                                <li>
-                                    <a href="/pages/contact-us">
-                                        <span>Contact Us</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/pages/about-duck-camp">
-                                        <span>About Us</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/pages/faq">
-                                        <span>FAQ</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/pages/return-and-exchange-policy">
-                                        <span>Returns &amp; Exchanges</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/pages/catalog">
-                                        <span>Duck Camp Catalog</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="https://jobs.gusto.com/boards/duck-camp-llc-9b81455d-8ca1-4d7b-a60d-1969b1923776">
-                                        <span>Careers</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/pages/pro-deal-application">
-                                        <span>Pro Deal Application</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/pages/custom-embroidery">
-                                        <span>Corporate Sales</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg col-6">
-                <div class="d-flex justify-content-center align-items-center">
-                    <div class="s-footer__nav-block">
-                        <h4>
-                            Retail
-                        </h4>
-                        <nav>
-                            <ul>
-                                <li>
-                                    <a href="/pages/the-austin-shop">
-                                        <span>The Austin Shop</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/pages/the-houston-shop">
-                                        <span>The Houston Shop</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/pages/retail-partners">
-                                        <span>Retail Locator</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/pages/become-a-retailer">
-                                        <span>Become a Retailer</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg col-6">
-                <div class="d-flex flex-column justify-content-center align-items-center">
-                
-                    <div class="">
-                        <h4>Call Us</h4>
-                        <a href="tel:7372707665">
-                            737-270-7665
-                        </a>
-                    </div>
-                    <div class="">
-                        <h4>Write Us</h4><a href="mailto:help@duckcamp.com">
-                            help@duckcamp.com
-                        </a>
-                    </div>
-                
+                    <img src="{% static 'website/images/logo-full.svg' %}" alt="Logo" class="bg-black img-fluid">
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <hr>
+            <div class="col-12">
+
+            </div>
     </div>
+</div>
     <hr>
     <div class="s-footer__kicker">
         <div class="d-flex inline-flex justify-content-start align-items-center">
