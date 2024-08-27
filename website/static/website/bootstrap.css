@@ -7776,6 +7776,14 @@ textarea.form-control-lg {
   padding: 3rem !important;
 }
 
+.p-6 {
+  padding: 4.5rem !important;
+}
+
+.p-7 {
+  padding: 6rem !important;
+}
+
 .px-0 {
   padding-right: 0 !important;
   padding-left: 0 !important;
@@ -7982,6 +7990,22 @@ textarea.form-control-lg {
 
 .fs-6 {
   font-size: 1rem !important;
+}
+
+.fs-7 {
+  font-size: 0.875rem !important;
+}
+
+.fs-8 {
+  font-size: 0.75rem !important;
+}
+
+.fs-9 {
+  font-size: 0.625rem !important;
+}
+
+.fs-10 {
+  font-size: 0.59rem !important;
 }
 
 .fst-italic {

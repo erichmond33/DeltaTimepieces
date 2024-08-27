@@ -7,12 +7,12 @@
     <div class="row h-100">
         <div class="col-lg-6 col-12" id="banner1">
             <div class="d-flex justify-content-start align-items-end p-lg-5 p-3 h-100 w-100">
-                <div class="flex-column m-lg-5 m-3">
+                <div class="flex-column m-xxl-5 m-lg-3 m-3">
                     <h1 class="old text-uppercase white fs-1">
-                        Luxary is a choice
+                        We're here to help
                     </h1>
                     <p class="white fs-5">
-                        Explore our latest collection of high-quality timepieces
+                        The easiest way to buy high-quality luxury watches
                     </p>
                     <button class="px-5 py-2 btn btn-light rounded old cta-light fs-5">
                         Shop now
@@ -28,22 +28,25 @@
 
 {% include 'website/category_section.html' with section_title="New arrivals" watches=newest_watches shop_all_url='inventory' %}
 
-<div class="container mt-5">
+<div class="container-sm g-sm-4 g-0 mt-5">
     <div class="row">
-        <div class="col-md-6 col-12 pe-md-0 mt-md-4">
-            <img src="{% static 'website/images/about.jpg' %}" alt="About us" id="about-img" class="img-fluid cover -md-start-top img-1x1 ">
+        <div class="col-md-6 col-12 pe-md-0 mt-md-4 d-flex">
+            <img src="{% static 'website/images/about.jpg' %}" alt="About us" id="about-img" class="img-fluid cover img-1x1 h-100">
         </div>
-        <div class="col-md-6 col-12 ps-md-0 mt-md-4 mt-0">
-            <div class="d-flex flex-column justify-content-center align-items-start h-100 p-5 bg-pepsi -md-end-bottom ">
+        <div class="col-md-6 col-12 ps-md-0 mt-md-4 mt-0 d-flex">
+            <div class="d-flex flex-column justify-content-center align-items-start h-100 p-5 bg-pepsi">
                 
-                <h2 class="text-uppercase fs-1 white">
+                <h2 class="text-uppercase old fs-1 white">
                     About us
                 </h2>
-                <p class="fs-4 white">
-                    We are a family-owned business that has been in the watch industry for over 50 years. We specialize in high-quality timepieces and offer a wide range of services including repairs, maintenance, and customizations.
+                <p class="white">
+                    We are a family-owned business that has been in the watch industry for over 50 years.
+                </p>
+                <p class="white">
+                    We specialize in high-quality timepieces and offer a wide range of services including repairs, maintenance, and customizations.
                 </p>
                 <div class="d-flex justify-content-start align-items-center">
-                    <div class="d-flex bg-light p-2 rounded-pill">
+                    <div class="d-flex bg-light p-2 rounded">
                         <p class="m-0 fs-6"><a class="blue" href="{% url 'index' %}">Shop all</a></p>
                         <span class="material-symbols-outlined">arrow_forward_ios</span>
                     </div>
@@ -56,55 +59,62 @@
 
 {% include 'website/category_section.html' with section_title="Our picks" watches=our_picks shop_all_url='inventory' %}
 
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-12">
-            <img src="{% static 'website/images/open-back3.jpg' %}" alt="About us" id="about-img" class="cover img-4x3 w-100  ">
-        </div>
-    </div>
+<div class="container-md g-md-4 g-0 mt-5">
+    <img src="{% static 'website/images/middle.webp' %}" alt="About us" id="about-img" class="cover img-4x3 img-fluid">
 </div>
 
 {% include 'website/category_section.html' with section_title="Timeless" watches=timeless shop_all_url='inventory' %}
 
-<div class="container mt-5">
-    <div class="row bg-pepsi  py-5">
-        <div class="col-12 mx-auto mw-lg mt-0">
-            <p class="fs-2 white">Don't see what you are looking for?</p>
-            <p class="pb-3 white">Let us find it for you</p>
-            <form action="{% url 'index' %}" method="post" class="">
-                {% csrf_token %}
-                <div class="row">
-                    <div class="col-md-6 col-12">
-                        <div class="form-floating">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="name" required>
-                            <label for="name" class="black">Name</label>
-                            <div class="invalid-feedback">
-                                Please provide your name
+<div class="container-sm g-sm-4 g-0 mt-5">
+    <div class="row">
+        <div class="col-md-6 col-12 pe-md-0 mt-md-4 d-flex">
+            <div class="d-flex flex-column justify-content-center align-items-start h-100 bg-pepsi px-4 py-5">
+                <p class="fs-2 white old">Don't see what you are looking for?</p>
+                <p class="pb-3 white">Let us find it for you</p>
+                <form action="{% url 'index' %}" method="post" class="">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-6 col-12">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="name" required>
+                                <label for="name" class="black">Name</label>
+                                <div class="invalid-feedback">
+                                    Please provide your name
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                        <div class="form-floating">
-                            <input type="email" class="form-control" id="email" name="email" placeholder="email"
-                                required>
-                            <label for="email" class="black">Email</label>
-                            <div class="invalid-feedback">
-                                Please provide a valid email
+                        <div class="col-lg-6 col-12">
+                            <div class="form-floating">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="email"
+                                    required>
+                                <label for="email" class="black">Email</label>
+                                <div class="invalid-feedback">
+                                    Please provide a valid email
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-floating">
-                            <textarea class="form-control h-100" placeholder="Tell us what you want." id="message"
-                                name="message" rows="5" required></textarea>
-                            <label for="message" class="black">Message</label>
-                            <div class="invalid-feedback">
-                                Please provide a message
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <textarea class="form-control h-100 bg-white" placeholder="Tell us what you want." id="message"
+                                    name="message" rows="5" required></textarea>
+                                <label for="message" class="black">Message</label>
+                                <div class="invalid-feedback">
+                                    Please provide a message
+                                </div>
                             </div>
                         </div>
+                        <div class="col-12">
+                            <button type="submit" class="py-2 btn btn-light rounded cta-light fs-5 w-100">
+                                Submit
+                            </button>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            
+        </div>
+    </div>
+        <div class="col-md-6 col-12 ps-md-0 mt-md-4 mt-0 d-flex">
+            <img src="{% static 'website/images/find.jpg' %}" alt="About us" id="about-img" class="img-fluid cover h-100 img-1x1 ">
         </div>
     </div>
 </div>
