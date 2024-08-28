@@ -21,19 +21,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 import os
 from dotenv import load_dotenv
 load_dotenv('./website/keys.env')
-
-# SECRET_KEY = os.getenv('SECRET_KEY')
-SECRET_KEY = os.environ.get('SECRET_KEY')
 SECURE_HSTS_SECONDS = 31536000
 
-DEBUG = True # True if os.getenv('DEBUG') == "True" else False if os.getenv('DEBUG') == "False" else None
-SECURE_SSL_REDIRECT = False if os.getenv('SECURE_SSL_REDIRECT') == "False" else True if os.getenv('SECURE_SSL_REDIRECT') == "True" else None
-SESSION_COOKIE_SECURE = False if os.getenv('SESSION_COOKIE_SECURE') == "False" else True if os.getenv('SESSION_COOKIE_SECURE') == "True" else None
-CSRF_COOKIE_SECURE = False if os.getenv('CSRF_COOKIE_SECURE') == "False" else True if os.getenv('CSRF_COOKIE_SECURE') == "True" else None
-SECURE_HSTS_INCLUDE_SUBDOMAINS = False if os.getenv('SECURE_HSTS_INCLUDE_SUBDOMAINS') == "False" else True if os.getenv('SECURE_HSTS_INCLUDE_SUBDOMAINS') == "True" else None
-SECURE_HSTS_PRELOAD = False if os.getenv('SECURE_HSTS_PRELOAD') == "False" else True if os.getenv('SECURE_HSTS_PRELOAD') == "True" else None
+SECRET_KEY = os.environ.get('SECRET_KEY')
+if SECRET_KEY == None:
+    SECRET_KEY = os.getenv('SECRET_KEY')    
 
-if DEBUG == None:
+DEBUG = True if os.environ.get('DEBUG') == "True" else False if os.environ.get('DEBUG') == "False" else None
+if DEBUG == True:
+    SECURE_SSL_REDIRECT = False
+    SESSION_COOKIE_SECURE = False
+    CSRF_COOKIE_SECURE = False
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+    SECURE_HSTS_PRELOAD = False
+elif DEBUG == False or DEBUG == None:
     DEBUG = True if os.getenv('DEBUG2') == "True" else False
     SECURE_SSL_REDIRECT = False if os.getenv('SECURE_SSL_REDIRECT2') == "False" else True
     SESSION_COOKIE_SECURE = False if os.getenv('SESSION_COOKIE_SECURE2') == "False" else True
