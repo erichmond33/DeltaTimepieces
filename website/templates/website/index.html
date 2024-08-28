@@ -28,8 +28,8 @@
 
 {% include 'website/category_section.html' with section_title="New arrivals" watches=newest_watches shop_all_url='inventory' %}
 
-<div class="container-sm g-sm-4 g-0 mt-5">
-    <div class="row">
+<div class="container g-sm-4 g-0 mt-5">
+    <div class="row g-0">
         <div class="col-md-6 col-12 pe-md-0 mt-md-4 d-flex">
             <img src="{% static 'website/images/about.jpg' %}" alt="About us" id="about-img" class="img-fluid cover img-1x1 h-100">
         </div>
@@ -59,14 +59,18 @@
 
 {% include 'website/category_section.html' with section_title="Our picks" watches=our_picks shop_all_url='inventory' %}
 
-<div class="container-md g-md-4 g-0 mt-5">
-    <img src="{% static 'website/images/middle.webp' %}" alt="About us" id="about-img" class="cover img-4x3 img-fluid">
+<div class="container g-md-4 g-0 mt-5">
+    <div class="row g-0">
+        <div class="col-12">
+            <img src="{% static 'website/images/middle.webp' %}" alt="About us" id="about-img" class="cover img-4x3 img-fluid">
+        </div>
+    </div>
 </div>
 
 {% include 'website/category_section.html' with section_title="Timeless" watches=timeless shop_all_url='inventory' %}
 
-<div class="container-sm g-sm-4 g-0 mt-5">
-    <div class="row">
+<div class="container g-sm-4 g-0 mt-5">
+    <div class="row g-0">
         <div class="col-md-6 col-12 pe-md-0 mt-md-4 d-flex">
             <div class="d-flex flex-column justify-content-center align-items-start h-100 bg-pepsi px-4 py-5">
                 <p class="fs-2 white old">Don't see what you are looking for?</p>
@@ -211,18 +215,16 @@
                     <h2>
                         Directory
                     </h2>
-                    <ul class="list-unstyled">
-                        <li>
+                        <p>
                             <a href="{% url 'index' %}">
                                 Home
                             </a>
-                        </li>
-                        <li>
+                        </p>
+                        <p>
                             <a href="{% url 'inventory' %}">
                                 Shop
                             </a>
-                        </li>
-                    </ul>
+                        </p>
                 </div>
             </div>
             <div class="col-lg-4 col-6">
@@ -230,23 +232,21 @@
                     <h2>
                         Get in touch
                     </h2>
-                    <ul class="list-unstyled g-4">
-                        <li>
+                        <p>
                             <a href="tel:555-555-5555">
                                 Phone: 555-555-5555
                             </a>
-                        </li>
-                        <li>
+                        </p>
+                        <p>
                             <a href="mailto:deltatimepicesllc@gmail.com">
                                 Email: deltatimepieces@gmail.com
                             </a>
-                        </li>
-                        <li>
+                        </p>
+                        <p>
                             <a href="#">
                                 Address: 225 S Main St, Jonesboro, AR 72405
                             </a>
-                        </li>
-                    </ul>
+                        </p>
                 </div>
             </div>
             <div class="col-lg-4 col-6">
@@ -254,13 +254,11 @@
                     <h2>
                         Follow Us
                     </h2>
-                    <ul class="list-unstyled">
-                        <li>
+                        <p>
                             <a href="tel:555-555-5555">
                                 555-555-5555
                             </a>
-                        </li>
-                    </ul>
+                        </p>
                 </div>
             </div>
 
@@ -270,14 +268,8 @@
                 </div>
             </div>
         </div>
-
-        <div class="row">
-            <hr>
-            <div class="col-12">
-
-            </div>
     </div>
-</div>
+
     <hr>
     <div class="s-footer__kicker">
         <div class="d-flex inline-flex justify-content-start align-items-center">
@@ -286,21 +278,21 @@
             </div>
             <nav class="d-flex inline-flex justify-content-start align-items-center">
                 <ul>
-                    <li>
+                    <p>
                         <a href="#">
                             Privacy Policy
                         </a>
-                    </li>
-                    <li>
+                    </p>
+                    <p>
                         <a href="#">
                             Terms &amp; Conditions
                         </a>
-                    </li>
-                    <li>
+                    </p>
+                    <p>
                         <a href="/pages/accessibility-statement">
                             Accessibility Statement
                         </a>
-                    </li>
+                    </p>
                 </ul>
             </nav>
         </div>

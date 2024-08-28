@@ -23,24 +23,27 @@ from dotenv import load_dotenv
 load_dotenv('./website/keys.env')
 SECURE_HSTS_SECONDS = 31536000
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
-if SECRET_KEY == None:
-    SECRET_KEY = os.getenv('SECRET_KEY')    
+# SECRET_KEY = os.environ.get('SECRET_KEY')
 
-DEBUG = True if os.environ.get('DEBUG') == "True" else False if os.environ.get('DEBUG') == "False" else None
-if DEBUG == True:
+SECRET_KEY = os.getenv('SECRET_KEY')    
+
+DEBUG = True if os.getenv('DEBUG') == "True" else False if os.environ.get('DEBUG') == "False" else None
+if DEBUG == True or DEBUG == None:
+    if DEBUG == None:
+        DEBUG = True if os.getenv('DEBUG2') == "True" else False
     SECURE_SSL_REDIRECT = False
     SESSION_COOKIE_SECURE = False
     CSRF_COOKIE_SECURE = False
     SECURE_HSTS_INCLUDE_SUBDOMAINS = False
     SECURE_HSTS_PRELOAD = False
-elif DEBUG == False or DEBUG == None:
-    DEBUG = True if os.getenv('DEBUG2') == "True" else False
-    SECURE_SSL_REDIRECT = False if os.getenv('SECURE_SSL_REDIRECT2') == "False" else True
-    SESSION_COOKIE_SECURE = False if os.getenv('SESSION_COOKIE_SECURE2') == "False" else True
-    CSRF_COOKIE_SECURE = False if os.getenv('CSRF_COOKIE_SECURE2') == "False" else True
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = False if os.getenv('SECURE_HSTS_INCLUDE_SUBDOMAINS2') == "False" else True
-    SECURE_HSTS_PRELOAD = False if os.getenv('SECURE_HSTS_PRELOAD2') == "False" else True
+elif DEBUG == False:
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+print(DEBUG, SECURE_HSTS_PRELOAD)
+print(SECURE_SSL_REDIRECT, SESSION_COOKIE_SECURE, CSRF_COOKIE_SECURE, SECURE_HSTS_INCLUDE_SUBDOMAINS, SECURE_HSTS_PRELOAD)
 
 ALLOWED_HOSTS = ["deltatimepiecesllc.com", "www.deltatimepiecesllc.com", "144.202.17.114", "127.0.0.1", "delta-timepieces-e966006c84b4.herokuapp.com"]
 
@@ -143,7 +146,7 @@ USE_TZ = True
 #     },
 # }
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / 'static'
