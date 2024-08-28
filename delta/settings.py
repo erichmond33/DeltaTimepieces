@@ -40,7 +40,7 @@ if DEBUG == None:
     SECURE_HSTS_INCLUDE_SUBDOMAINS = False if os.getenv('SECURE_HSTS_INCLUDE_SUBDOMAINS2') == "False" else True
     SECURE_HSTS_PRELOAD = False if os.getenv('SECURE_HSTS_PRELOAD2') == "False" else True
 
-ALLOWED_HOSTS = ["deltatimepiecesllc.com", "www.deltatimepiecesllc.com", "144.202.17.114", "127.0.0.1", "delta-timepieces.herokuapp.com"]
+ALLOWED_HOSTS = ["deltatimepiecesllc.com", "www.deltatimepiecesllc.com", "144.202.17.114", "127.0.0.1", "delta-timepieces-e966006c84b4.herokuapp.com"]
 
 
 # Application definition

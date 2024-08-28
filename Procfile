@@ -1,1 +1,1 @@
-web: gunicorn delta.wsgi -log-file -
+web: gunicorn delta.wsgi --log-file -
