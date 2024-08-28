@@ -1,1 +1,1 @@
-web: gunicorn app:app
+web: gunicorn delta.wsgi -log-file -
