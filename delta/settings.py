@@ -25,7 +25,7 @@ load_dotenv('./website/keys.env')
 SECRET_KEY = os.getenv('SECRET_KEY')
 SECURE_HSTS_SECONDS = 31536000
 
-DEBUG = False # True if os.getenv('DEBUG') == "True" else False if os.getenv('DEBUG') == "False" else None
+DEBUG = True # True if os.getenv('DEBUG') == "True" else False if os.getenv('DEBUG') == "False" else None
 SECURE_SSL_REDIRECT = False if os.getenv('SECURE_SSL_REDIRECT') == "False" else True if os.getenv('SECURE_SSL_REDIRECT') == "True" else None
 SESSION_COOKIE_SECURE = False if os.getenv('SESSION_COOKIE_SECURE') == "False" else True if os.getenv('SESSION_COOKIE_SECURE') == "True" else None
 CSRF_COOKIE_SECURE = False if os.getenv('CSRF_COOKIE_SECURE') == "False" else True if os.getenv('CSRF_COOKIE_SECURE') == "True" else None
