@@ -22,7 +22,8 @@ import os
 from dotenv import load_dotenv
 load_dotenv('./website/keys.env')
 
-SECRET_KEY = os.getenv('SECRET_KEY')
+# SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 SECURE_HSTS_SECONDS = 31536000
 
 DEBUG = True # True if os.getenv('DEBUG') == "True" else False if os.getenv('DEBUG') == "False" else None
