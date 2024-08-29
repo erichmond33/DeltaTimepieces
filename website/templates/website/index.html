@@ -1,5 +1,6 @@
 {% extends "website/layout.html" %}
 {% load static %}
+{% load tz %}
 
 {% block body %}
 
@@ -9,7 +10,7 @@
             <div class="d-flex justify-content-start align-items-end p-lg-5 p-3 h-100 w-100">
                 <div class="flex-column m-xxl-5 m-lg-3 m-3">
                     <h1 class="old text-uppercase white fs-1">
-                        We're here to help
+                        Timeless Luxury, <br>First-Class Service
                     </h1>
                     <p class="white fs-5">
                         The easiest way to buy high-quality luxury watches
@@ -36,9 +37,9 @@
         <div class="col-md-6 col-12 ps-md-0 mt-md-4 mt-0 d-flex">
             <div class="d-flex flex-column justify-content-center align-items-start h-100 p-5 bg-pepsi">
                 
-                <h2 class="text-uppercase old fs-1 white">
-                    About us
-                </h2>
+                <p class="old fs-2 white">
+                    Dress up, dress down
+                </p>
                 <p class="white">
                     We are a family-owned business that has been in the watch industry for over 50 years.
                 </p>
@@ -108,7 +109,7 @@
                             </div>
                         </div>
                         <div class="col-12">
-                            <button type="submit" class="py-2 btn btn-light rounded cta-light fs-5 w-100">
+                            <button type="submit" class="py-2 btn btn-light rounded fs-5 w-100">
                                 Submit
                             </button>
                         </div>
@@ -208,95 +209,61 @@
 </div>
 
 <div class="container-fluid mb-0 bg-black white old bg-grey">
-    <div class="container">
+    <div class="container mb-0">
         <div class="row py-5">
-            <div class="col-lg-4 col-6">
-                <div class="d-flex justify-content-start flex-column">
-                    <h2>
-                        Directory
-                    </h2>
-                        <p>
-                            <a href="{% url 'index' %}">
-                                Home
-                            </a>
-                        </p>
-                        <p>
-                            <a href="{% url 'inventory' %}">
-                                Shop
-                            </a>
-                        </p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-6">
-                <div class="d-flex justify-content-start flex-column">
-                    <h2>
+            <div class="col-md-4 col-12">
+                <div class="text-md-start text-center">
+                    <h2 class="mb-4">
                         Get in touch
                     </h2>
+                        <label class="fw-bold">Phone</label>
                         <p>
-                            <a href="tel:555-555-5555">
-                                Phone: 555-555-5555
+                            <a href="tel:870-351-9816">
+                                (870) 351-9816
                             </a>
                         </p>
+                        <label class="fw-bold">Email</label>
                         <p>
                             <a href="mailto:deltatimepicesllc@gmail.com">
-                                Email: deltatimepieces@gmail.com
+                                deltatimepiecesllc@gmail.com
                             </a>
                         </p>
+                        <label class="fw-bold">Address</label>
                         <p>
                             <a href="#">
-                                Address: 225 S Main St, Jonesboro, AR 72405
+                                225 S Main St, Jonesboro, AR 72405
                             </a>
                         </p>
                 </div>
             </div>
-            <div class="col-lg-4 col-6">
-                <div class="d-flex justify-content-start flex-column">
-                    <h2>
-                        Follow Us
+            <div class="col-md-4 col-12 mb-5">
+                <div class="text-center">
+                    <h2 class="mb-4 text-center">
+                        Follow us
                     </h2>
-                        <p>
-                            <a href="tel:555-555-5555">
-                                555-555-5555
-                            </a>
-                        </p>
+                    <a href="https://www.instagram.com/deltatimepieces/" target="_blank">
+                        <img src="{% static 'website/images/instagram.svg' %}" alt="Instagram" class="img-fluid invert rounded-3" width="50">
+                    </a>
+                    <a href="https://www.facebook.com/p/Delta-Timepieces-100063762565329/" target="_blank">
+                        <img src="{% static 'website/images/facebook.svg' %}" alt="Facebook" class="img-fluid invert rounded-3" width="50">
+                    </a>
                 </div>
             </div>
-
-            <div class="col-lg-6 col-12 mx-auto">
+            <div class="col-md-4 col-12 mx-auto">
                 <div class="d-flex justify-content-center align-items-center">
-                    <img src="{% static 'website/images/logo-full.svg' %}" alt="Logo" class="bg-black img-fluid">
+                    <picture>
+                        <source media="(min-width: 767.98px)" srcset="{% static 'website/images/logo.svg' %}" width="150">
+                        <img src="{% static 'website/images/logo-full.svg' %}" alt="Logo" class="bg-black img-fluid" width="375px">
+                    </picture>
                 </div>
+            </div>
+
+            <div class="col-12 pt-5 text-center border-top">
+                © Delta Timepieces {% now "Y" %}. All rights reserved.
             </div>
         </div>
     </div>
 
-    <hr>
-    <div class="s-footer__kicker">
-        <div class="d-flex inline-flex justify-content-start align-items-center">
-            <div class="s-footer__kicker__copyright">
-                © Duck Camp 2024. All Rights Reserved.
-            </div>
-            <nav class="d-flex inline-flex justify-content-start align-items-center">
-                <ul>
-                    <p>
-                        <a href="#">
-                            Privacy Policy
-                        </a>
-                    </p>
-                    <p>
-                        <a href="#">
-                            Terms &amp; Conditions
-                        </a>
-                    </p>
-                    <p>
-                        <a href="/pages/accessibility-statement">
-                            Accessibility Statement
-                        </a>
-                    </p>
-                </ul>
-            </nav>
-        </div>
-    </div>
 </div>
 
 <script>

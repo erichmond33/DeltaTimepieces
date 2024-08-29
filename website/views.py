@@ -2,6 +2,8 @@ from django.shortcuts import render
 from .models import *
 from django.shortcuts import redirect
 from datetime import datetime
+from django.core.mail import send_mail
+
 
 # Create your views here.
 def index(request):
@@ -30,6 +32,11 @@ def add_view(request):
 
         return redirect('edit', watch.id)
     elif request.method == 'GET':
+        send_mail('Subject here',
+          'Here is the message.',
+          'deltatimepiecesservices@gmail.com',
+          ['deltatimepiecesservices@gmail.com'],
+            fail_silently=False)
         return render(request, 'website/add.html')
 
 def edit_view(request, watch_id):

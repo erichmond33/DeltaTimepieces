@@ -1,5 +1,4 @@
 website/keys.env
-keys2.env
 uwsgi.ini
 uwsgi.pid
 uwsgi.log
