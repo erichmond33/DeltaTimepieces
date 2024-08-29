@@ -12,14 +12,14 @@
     {% endblock %}
 </head>
 <body class="{% block body-class %} {% endblock %}">
-    <nav class="navbar navbar-expand-lg sticky-top scrolled py-0" id="nav">
+    <nav class="navbar navbar-expand-lg {% if request.resolver_match.url_name == 'index' %} fixed-top {% else %} sticky-top bg-white {% endif %} py-0" id="nav">
         <div class="container-fluid mb-0 px-md-4">
             <a class="navbar-brand white d-flex align-items-center" href="{% url 'index' %}">
                 <picture>
                     <source media="(max-width: 410px)" srcset="{% static 'website/images/logo-full.svg' %}" width="225">
                     <source media="(max-width: 576px)" srcset="{% static 'website/images/logo-full.svg' %}" width="250">
                     <img id="logo" src="{% static 'website/images/logo-full.svg' %}" alt="logo" width="375"
-                        class="d-inline-block align-text-top invert">
+                        class="d-inline-block align-text-top {% if not request.resolver_match.url_name == 'index' %} invert {% endif %}">
                 </picture>
             </a>
             <div class="bg-white rounded d-flex align-items-center p-sm-0 p-0">
@@ -28,7 +28,12 @@
                     <img src="{% static 'website/images/menu2.svg' %}" alt="Menu" width="25">
                 </button>
                 <button type="button" id="cart" class="navbar-toggler p-sm-3 p-2 rounded-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <div class="position-relative h-100 w-100">
                         <img src="{% static 'website/images/cart2.svg' %}" alt="Cart" width="25">
+                            {% if cart|length > 0 %}
+                            <div class="fs-10 position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">{{ cart|length }}</div>
+                            {% endif %}
+                        </div>
                 </button>
             </div>
     
@@ -47,21 +52,18 @@
                             <a class="nav-link" href="{% url 'inventory' %}">Shop</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link pe-lg-3 pe-0" href="#">Contact</a>
+                            <a class="nav-link pe-lg-3 pe-0" href="{% url 'contact' 'general' %}">Contact</a>
                         </li>
                         {% if request.user.is_superuser %}
                         <li class="nav-item nav-break">
                             <a class="nav-link px-3" href="{% url 'add' %}">Add</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link pe-lg-3 pe-0" href="{% url 'add' %}">Archives</a>
                         </li>
                         {% endif %}
                         <li class="nav-item nav-break">
                             <a class="btn nav-link mx-2 px-2 rounded-0 position-relative" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" width="25">
                                 <img class="" src="{% static 'website/images/cart2.svg' %}" alt="Cart" width="25">
                                 {% if cart|length > 0 %}
-                                <span class="fs-10 position-absolute top-0 end-0 badge rounded-pill bg-dark">{{ cart|length }}</span>
+                                <div class="fs-10 position-absolute top-0 end-0 badge rounded-pill bg-dark">{{ cart|length }}</div>
                                 {% endif %}
                             </a>
                         </li>
@@ -72,7 +74,7 @@
         </div>
     </nav>
       
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" data-bs-show="true" show>
         <div class="modal-dialog modal-fullscreen-sm-down modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
@@ -94,6 +96,32 @@
             </div>
         </div>
     </div>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+                    <div class="toast-header">
+                        <strong class="me-auto">{{ message.tags }}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        {{ message }}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+            var toastList = toastElList.map(function (toastEl) {
+                return new bootstrap.Toast(toastEl)
+            })
+            toastList.forEach(toast => toast.show())
+        });
+    </script>
 
     {% block body %}    
     {% endblock %}

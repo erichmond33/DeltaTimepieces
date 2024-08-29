@@ -1,0 +1,62 @@
+{% load static %}
+{% load tz %}
+
+<div class="container-fluid mb-0 bg-black white old bg-grey">
+    <div class="container mb-0">
+        <div class="row py-5">
+            <div class="col-md-4 col-12">
+                <div class="text-md-start text-center">
+                    <h2 class="mb-4">
+                        Get in touch
+                    </h2>
+                        <label class="fw-bold">Phone</label>
+                        <p>
+                            <a href="tel:870-351-9816">
+                                (870) 351-9816
+                            </a>
+                        </p>
+                        <label class="fw-bold">Email</label>
+                        <p>
+                            <a href="{% url 'contact' 'general' %}">
+                                deltatimepiecesllc@gmail.com
+                            </a>
+                        </p>
+                        <label class="fw-bold">Address</label>
+                        <p>
+                            <a href="#">
+                                225 S Main St, Jonesboro, AR 72405
+                            </a>
+                        </p>
+                </div>
+            </div>
+            <div class="col-md-4 col-12 mb-5">
+                <div class="text-center">
+                    <h2 class="mb-4 text-center">
+                        Follow us
+                    </h2>
+                    <a href="https://www.instagram.com/deltatimepieces/" target="_blank">
+                        <img src="{% static 'website/images/instagram.svg' %}" alt="Instagram" class="img-fluid invert rounded-3" width="50">
+                    </a>
+                    <a href="https://www.facebook.com/p/Delta-Timepieces-100063762565329/" target="_blank">
+                        <img src="{% static 'website/images/facebook.svg' %}" alt="Facebook" class="img-fluid invert rounded-3" width="50">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 col-12 mx-auto">
+                <div class="d-flex justify-content-center align-items-center">
+                    <picture>
+                        <source media="(min-width: 767.98px)" srcset="{% static 'website/images/logo.svg' %}" width="150">
+                        <img src="{% static 'website/images/logo-full.svg' %}" alt="Logo" class="bg-black img-fluid" width="375px">
+                    </picture>
+                </div>
+            </div>
+
+            <div class="col-12 pt-5 text-center border-top">
+                <a href="{% url 'privacy' %}">
+                © Delta Timepieces {% now "Y" %}. All rights reserved.
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>

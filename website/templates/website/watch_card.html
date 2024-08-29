@@ -1,7 +1,7 @@
 {% load static %}
 {% load humanize %}
 
-<a href="{% url 'watch' watch.id %}" class="text-decoration-none color-inherit">
+<a href="{% url 'watch' watch.id %}" class="text-decoration-none color-inherit" id="watch-{{ watch.id }}">
     <div class="card product-card mb-3">
         <div class="img-container">
             <img src="{{ watch.image.url }}" alt="Product image"

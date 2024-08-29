@@ -1,6 +1,5 @@
 {% extends "website/layout.html" %}
 {% load static %}
-{% load tz %}
 
 {% block body %}
 
@@ -76,7 +75,7 @@
             <div class="d-flex flex-column justify-content-center align-items-start h-100 bg-pepsi px-4 py-5">
                 <p class="fs-2 white old">Don't see what you are looking for?</p>
                 <p class="pb-3 white">Let us find it for you</p>
-                <form action="{% url 'index' %}" method="post" class="">
+                <form action="{% url 'contact' 'find_watch' %}" method="post" class="">
                     {% csrf_token %}
                     <div class="row">
                         <div class="col-lg-6 col-12">
@@ -90,6 +89,15 @@
                         </div>
                         <div class="col-lg-6 col-12">
                             <div class="form-floating">
+                                <input type="tel" class="form-control" id="phone" name="phone" placeholder="phone" required>
+                                <label for="phone" class="black">Phone number</label>
+                                <div class="invalid-feedback">
+                                    Please provide a valid phone number
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating">
                                 <input type="email" class="form-control" id="email" name="email" placeholder="email"
                                     required>
                                 <label for="email" class="black">Email</label>
@@ -102,14 +110,14 @@
                             <div class="form-floating">
                                 <textarea class="form-control h-100 bg-white" placeholder="Tell us what you want." id="message"
                                     name="message" rows="5" required></textarea>
-                                <label for="message" class="black">Message</label>
+                                <label for="message" class="black">What are you looking for?</label>
                                 <div class="invalid-feedback">
                                     Please provide a message
                                 </div>
                             </div>
                         </div>
                         <div class="col-12">
-                            <button type="submit" class="py-2 btn btn-light rounded fs-5 w-100">
+                            <button type="submit" class="py-2 btn btn-light cta-light rounded fs-5 w-100">
                                 Submit
                             </button>
                         </div>
@@ -208,63 +216,7 @@
     </div>
 </div>
 
-<div class="container-fluid mb-0 bg-black white old bg-grey">
-    <div class="container mb-0">
-        <div class="row py-5">
-            <div class="col-md-4 col-12">
-                <div class="text-md-start text-center">
-                    <h2 class="mb-4">
-                        Get in touch
-                    </h2>
-                        <label class="fw-bold">Phone</label>
-                        <p>
-                            <a href="tel:870-351-9816">
-                                (870) 351-9816
-                            </a>
-                        </p>
-                        <label class="fw-bold">Email</label>
-                        <p>
-                            <a href="mailto:deltatimepicesllc@gmail.com">
-                                deltatimepiecesllc@gmail.com
-                            </a>
-                        </p>
-                        <label class="fw-bold">Address</label>
-                        <p>
-                            <a href="#">
-                                225 S Main St, Jonesboro, AR 72405
-                            </a>
-                        </p>
-                </div>
-            </div>
-            <div class="col-md-4 col-12 mb-5">
-                <div class="text-center">
-                    <h2 class="mb-4 text-center">
-                        Follow us
-                    </h2>
-                    <a href="https://www.instagram.com/deltatimepieces/" target="_blank">
-                        <img src="{% static 'website/images/instagram.svg' %}" alt="Instagram" class="img-fluid invert rounded-3" width="50">
-                    </a>
-                    <a href="https://www.facebook.com/p/Delta-Timepieces-100063762565329/" target="_blank">
-                        <img src="{% static 'website/images/facebook.svg' %}" alt="Facebook" class="img-fluid invert rounded-3" width="50">
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-4 col-12 mx-auto">
-                <div class="d-flex justify-content-center align-items-center">
-                    <picture>
-                        <source media="(min-width: 767.98px)" srcset="{% static 'website/images/logo.svg' %}" width="150">
-                        <img src="{% static 'website/images/logo-full.svg' %}" alt="Logo" class="bg-black img-fluid" width="375px">
-                    </picture>
-                </div>
-            </div>
-
-            <div class="col-12 pt-5 text-center border-top">
-                © Delta Timepieces {% now "Y" %}. All rights reserved.
-            </div>
-        </div>
-    </div>
-
-</div>
+{% include 'website/footer.html' %}
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -317,29 +269,27 @@
 
 </script>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var nav = document.getElementById('nav');
-        var logo = document.getElementById('logo');
+document.addEventListener('DOMContentLoaded', function () {
+    var nav = document.getElementById('nav');
+    var logo = document.getElementById('logo');
+    var scrolled = false;
 
-        nav.classList.remove('sticky-top');
-        nav.classList.add('fixed-top');
-
-        // wait .5 seconds
-        setTimeout(function() {
-            nav.classList.remove('scrolled');
-            logo.classList.remove('invert');
-        }, 500);
-
-        window.addEventListener('scroll', function () {
-            if (window.scrollY > 150) {
+    window.addEventListener('scroll', function () {
+        if (window.scrollY > 150 && !scrolled) {
+            requestAnimationFrame(function () {
                 nav.classList.add('scrolled');
                 logo.classList.add('invert');
-            } else {
+                scrolled = true;
+            });
+        } else if (window.scrollY <= 150 && scrolled) {
+            requestAnimationFrame(function () {
                 nav.classList.remove('scrolled');
                 logo.classList.remove('invert');
-            }
-        });
+                scrolled = false;
+            });
+        }
     });
+});
 </script>
 
 {% endblock %}

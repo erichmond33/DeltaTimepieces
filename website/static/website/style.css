@@ -165,21 +165,19 @@ body {
     background-repeat: no-repeat;
     /* height: 100%; */
     /* width: 100%; */
-  }j
-
+  }
 #nav {
     background-color: transparent;
-    transition: background-color 0.5s ease;
+    transition: all .3s ease-in-out;
 }
 #nav.scrolled {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 1);
 }
 #logo {
-    transition: filter 0.5s ease;
+    transition: all .3s ease-in-out
 }
 #logo.invert {
     filter: invert(1);
-    transition: filter 0.5s ease;
 }
 
 .material-symbols-outlined {

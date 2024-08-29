@@ -3,7 +3,10 @@ from .models import *
 from django.shortcuts import redirect
 from datetime import datetime
 from django.core.mail import send_mail
-
+from dotenv import load_dotenv
+import os
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 def index(request):
@@ -32,11 +35,6 @@ def add_view(request):
 
         return redirect('edit', watch.id)
     elif request.method == 'GET':
-        send_mail('Subject here',
-          'Here is the message.',
-          'deltatimepiecesservices@gmail.com',
-          ['deltatimepiecesservices@gmail.com'],
-            fail_silently=False)
         return render(request, 'website/add.html')
 
 def edit_view(request, watch_id):
@@ -101,13 +99,56 @@ def checkout_view(request):
 
         return render(request, 'website/checkout.html', {'cart': watches_in_cart, 'total': total})
     
-def add_to_cart(request, watch_id):
-        cart = request.session.get('cart', [])
-        if watch_id not in cart:
-            cart.append(watch_id)
-            request.session['cart'] = cart
+def contact_view(request, form_name):
+    if request.method == 'POST':
 
-        return redirect('checkout')
+        name = request.POST['name']
+        phone = request.POST['phone']
+        email = request.POST['email']
+        message = request.POST['message']
+
+        header=""
+        if form_name == "find_watch":
+            header = f"{name} replied to the \"Don't see what you are looking for?\" form."
+            short_header = "Find a watch form"
+        elif form_name == "general":
+            header = f"{name} replied to the \"General Inquiry\" form."
+            short_header = "General Inquiry form"
+
+        load_dotenv('./website/keys.env')
+
+        try:
+            send_mail(
+                f'New message from {name} ({short_header})',
+                f'{header}\n\n--\n\n{message}\n\nPhone number: {phone}\nEmail: {email}',
+                os.getenv('EMAIL_HOST_USER'),
+                [os.getenv('EMAIL_HOST_RECEIVER')],
+                fail_silently=False
+            )
+            status_message_for_user = "Message sent successfully! We will get back to you as soon as possible."
+            messages.success(request, status_message_for_user)
+        except Exception as e:
+            status_message_for_user = f"Message failed to send. We aren't sure what went wrong. We are very sorry. Please give us a call instead (870) 351-9816"
+            messages.error(request, status_message_for_user)
+
+        return redirect('index')
+    elif request.method == 'GET':
+        return render(request, 'website/contact.html')
+    
+def add_to_cart(request, watch_id):
+    cart = request.session.get('cart', [])
+    if watch_id not in cart:
+        cart.append(watch_id)
+        request.session['cart'] = cart
+
+    referer = request.META.get('HTTP_REFERER')
+    if '#' in referer:
+        base_url, _ = referer.split('#', 1)
+        redirect_url = f"{base_url}#watch-{watch_id}"
+    else:
+        redirect_url = f"{referer}#watch-{watch_id}"
+    
+    return redirect(redirect_url)
 
 def remove_from_cart(request, watch_id):
     cart = request.session.get('cart', [])
@@ -115,11 +156,35 @@ def remove_from_cart(request, watch_id):
         cart.remove(watch_id)
         request.session['cart'] = cart
 
-    return redirect('checkout')
+    redirect_url = request.META.get('HTTP_REFERER')
+    return redirect(redirect_url)
     
 def inventory_view(request):
-    watches = Watch.objects.all()
-    return render(request, 'website/inventory.html', {'watches': watches})
+    watches = Watch.objects.all().order_by('-timestamp')
+    sort_by_tags = ['Newest', 'Oldest', 'Price, low to high', 'Price, high to low', 'Year, old to new', 'Year, new to old']
+    sort_by_tag = 'Newest'
+
+
+    sort_by = request.GET.get('sort_by')
+    if sort_by == 'Oldest':
+        watches = watches.order_by('timestamp')
+        sort_by_tag = "Oldest"
+    elif sort_by == 'Price, low to high':
+        watches = watches.order_by('price')
+        sort_by_tag = "Price, low to high"
+    elif sort_by == 'Price, high to low':
+        watches = watches.order_by('-price')
+        sort_by_tag = "Price, high to low"
+    elif sort_by == 'Year, old to new':
+        watches = watches.order_by('year')
+        sort_by_tag = "Year, old to new"
+    elif sort_by == 'Year, new to old':
+        watches = watches.order_by('-year')
+        sort_by_tag = "Year, new to old"
+
+    scroll = True if request.GET.get('sort_by') else False
+
+    return render(request, 'website/inventory.html', {'watches': watches, 'sort_by_tag': sort_by_tag, 'sort_by_tags': sort_by_tags, 'scroll': scroll})
 
 def watch_view(request, watch_id):
     watch = Watch.objects.get(id=watch_id)
@@ -138,3 +203,22 @@ def delete_watch(request, watch_id):
         watch = Watch.objects.get(id=watch_id)
         watch.delete()
         return redirect('inventory')
+    
+def privacy(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+        
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('index')
+        else:
+            messages.error(request, "Invalid credentials")
+            return redirect('privacy')
+    elif request.method == "GET":
+        return render(request, "website/privacy.html")
+    
+def logout_view(request):
+    logout(request)
+    return redirect('index')

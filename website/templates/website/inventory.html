@@ -8,9 +8,26 @@
         <h2 class="text-center py-5 old text-uppercase">Inventory</h2>
         <img src="{% static 'website/images/inventory.jpg' %}" class="img-fluid cover mx-md-auto img-header w-100">
     </div>
-    <div class="container" id="form-container">
-        <div class="row">
-            <div class="old py-4 fs-4">Inventory</div>
+    <div class="container">
+        <div class="row" id="inventory">
+            <div class="d-flex align-items-center py-4 justify-content-between">
+                <div class="d-flex">
+                    <p class="old py-4 m-0 fs-4">Inventory</p>
+                </div>
+                <div class="d-flex justify-content-end align-items-center black">
+                    <div class="dropdown">
+                        <a class="pe-2 fs-6 old dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Sort by: {{ sort_by_tag }}
+                        </a>
+                      
+                        <ul class="dropdown-menu">
+                            {% for tag in sort_by_tags %}
+                                <li><a class="dropdown-item old" href="{% url 'inventory' %}?sort_by={{ tag }}">{{ tag }}</a></li>
+                            {% endfor %}
+                        </ul>
+                      </div>
+                </div>
+            </div>
             {% for watch in watches %}
                 <div class="col-lg-4 col-md-4 col-6 mt-0 mb-4">
                     {% include 'website/watch_card.html' with watch=watch %}
@@ -18,5 +35,15 @@
             {% endfor %}
         </div>
     </div>
+
+    {% if scroll %}
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                inventory = document.getElementById('inventory');
+                position = inventory.getBoundingClientRect().top;
+                window.scrollTo(0, position-40);
+            });
+        </script>
+    {% endif %}
 
 {% endblock %}

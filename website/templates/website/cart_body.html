@@ -1,11 +1,15 @@
 {% for watch in cart %}
 <div class="row py-3 border-bottom">
     <div class="col-5 px-md-0 px-sm-5 px-3">
-        <img src="{{ watch.image.url }}" class="img-fluid rounded img-1x1" alt="Image">
+        <a href="{% url 'watch' watch.id %}">
+            <img src="{{ watch.image.url }}" class="img-fluid rounded img-1x1" alt="Image">
+        </a>
     </div>
     <div class="col-7">
         <div class="d-flex flex-column h-100">
-            <h6 class="my-0 text-muted">{{ watch.name }}</h6>
+            <a href="{% url 'watch' watch.id %}" class="text-decoration-none color-inherit">
+                <h6 class="my-0 text-muted">{{ watch.name }}</h6>
+            </a>
             <h6 class="fw-bolder fst-italic">${{ watch.price }}</h6>
             <div class="d-flex justify-content-end align-items-end flex-grow-1">
                 <form action="{% url 'remove_from_cart' watch.id %}" method="post" class="m-0">

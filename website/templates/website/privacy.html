@@ -1,0 +1,39 @@
+{% extends "website/layout.html" %}
+{% load static %}
+
+{% block body-class %}
+bg-grey
+{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid pt-5">
+    <div class="container mw-lg">
+        <div class="row g-5">
+            <div class="col-md-7 col-12 mx-auto">
+                {% if request.user.is_authenticated %}
+                <h1 class="mb-5">You are already logged in.</h1>
+                <a href="{% url 'logout' %}" class="py-2 btn btn-dark old rounded fs-5 w-100 cta-dark">Logout</a>
+                {% else %}
+                <form action="{% url 'privacy' %}" method="post">
+                    {% csrf_token %}
+                    <h1 class="mb-3">Login</h1>
+                    <div class="mb-3 form-floating">
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+                        <label for="username" class="form-label">Username</label>
+                    </div>
+                    <div class="mb-3 form-floating">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                        <label for="password" class="form-label">Password</label>
+                    </div>
+                    <button type="submit" class="py-2 btn btn-dark old rounded fs-5 w-100 cta-dark">
+                        Submit
+                    </button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
