@@ -22,6 +22,7 @@
             required>
         <label for="name">Name</label>
     </div>
+
     <div class="input-group mb-3">
         <span class="input-group-text">$</span>
         <div class="form-floating">
@@ -31,13 +32,42 @@
         </div>
         <span class="input-group-text">.00</span>
     </div>
-    <div class="mb-3 form-floating">
-        <input type="text" class="form-control" id="year" name="year" placeholder="Ex. 1996" required pattern="\d{4}"
-            required>
-        <label for="year">Year</label>
+
+    <div class="row">
+        <div class="col-md-6 col-12">
+            <div class="mb-3 form-floating">
+                <input type="text" class="form-control" id="year" name="year" placeholder="Ex. 1996" required pattern="\d{4}"
+                    required>
+                <label for="year">Year (YYYY)</label>
+            </div>
+        </div>
+        <div class="col-md-6 col-12">
+            <div class="mb-3 form-floating">
+                <input type="text" class="form-control" id="condition" name="condition" placeholder="Great" required>
+                <label for="condition">Condition</label>
+            </div>
+        </div>
     </div>
 
-    <div class="col-12 mb-3">
+    <div class="mb-3 form-floating">
+        <input type="text" class="form-control" id="contents" name="contents" placeholder="Watch only" required>
+        <label for="contents">Contents</label>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="form-floating">
+                <textarea class="form-control h-100" placeholder="Call or text 870-351-9816
+                Located in Arkansas
+                IG/FB Deltatimepieces
+                Dozens of references" id="details"
+                name="details" rows="5"></textarea>
+                <label for="details">Extra details (not required)</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 my-3">
         <p class="fs-3">Home page categories</p>
         <div class="form-check">
             <input class="form-check-input" type="checkbox" id="our_picks" value="our_picks" name="our_picks"
@@ -74,5 +104,8 @@
         document.querySelector('input[name="name"]').value = 'Rolex OP Date reference 1501';
         document.querySelector('input[name="price"]').value = '10000';
         document.querySelector('input[name="year"]').value = '1996';
+        document.querySelector('input[name="condition"]').value = 'Great';
+        document.querySelector('input[name="contents"]').value = 'Watch only';
+        //document.querySelector('textarea[name="details"]').value = 'Call or text 870-351-9816\nLocated in Arkansas\nIG/FB Deltatimepieces\nDozens of references';
     });
 </script>

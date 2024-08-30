@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 import os
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -17,14 +18,25 @@ def index(request):
     rare_and_iconic = Watch.objects.filter(rare_and_iconic=True)
     return render(request, 'website/index.html', {'newest_watches': newest_watches, 'our_picks': our_picks, 'timeless': timeless, 'rare_and_iconic': rare_and_iconic})
 
+@login_required
 def add_view(request):
     if request.method == 'POST':
         image = request.FILES['image']
         name = request.POST['name']
         price = request.POST['price'].replace(',', '')
         year = request.POST['year']
+        condition = request.POST['condition']
+        contents = request.POST['contents']
+        details = request.POST['details']
 
-        watch = Watch.objects.create(name=name, price=price, year=year, image=image)
+        our_picks = request.POST.get('our_picks', False)
+        our_pick = True if our_picks != False else False
+        timeless = request.POST.get('timeless', False)
+        timeless = True if timeless != False else False
+        rare_and_iconic = request.POST.get('rare_and_iconic', False)
+        rare_and_iconic = True if rare_and_iconic != False else False
+
+        watch = Watch.objects.create(name=name, price=price, year=year, image=image, condition=condition, contents=contents, details=details, our_pick=our_pick, timeless=timeless, rare_and_iconic=rare_and_iconic)
         
         try: 
             images = request.FILES.getlist('images')
@@ -35,8 +47,13 @@ def add_view(request):
 
         return redirect('edit', watch.id)
     elif request.method == 'GET':
-        return render(request, 'website/add.html')
+        allow_our_picks = True if len(Watch.objects.filter(our_pick=True)) < 3 else False
+        allow_timeless = True if len(Watch.objects.filter(timeless=True)) < 3 else False
+        allow_rare_and_iconic = True if len(Watch.objects.filter(rare_and_iconic=True)) < 3 else False
 
+        return render(request, 'website/add.html', {'allow_our_picks': allow_our_picks, 'allow_timeless': allow_timeless, 'allow_rare_and_iconic': allow_rare_and_iconic})
+
+@login_required
 def edit_view(request, watch_id):
     if request.method == 'POST':
         watch = Watch.objects.get(id=watch_id)
@@ -63,6 +80,15 @@ def edit_view(request, watch_id):
         year = request.POST['year']
         if year:
             watch.year = year
+        condition = request.POST['condition']
+        if condition:
+            watch.condition = condition
+        contents = request.POST['contents']
+        if contents:
+            watch.contents = contents
+        details = request.POST['details']
+        if details:
+            watch.details = details
 
         our_picks = request.POST.get('our_picks', False)
         watch.our_pick = True if our_picks != False else False
@@ -191,6 +217,7 @@ def watch_view(request, watch_id):
     images = [watch.image] + [image.image for image in watch.secondary_images.all()]
     return render(request, 'website/watch.html', {'watch': watch, 'images': images})
 
+@login_required
 def delete_image(request, image_id):
     if request.method == 'POST':
         image = WatchSecondaryImage.objects.get(id=image_id)
@@ -198,6 +225,7 @@ def delete_image(request, image_id):
         image.delete()
         return redirect('edit', watch_id)
 
+@login_required
 def delete_watch(request, watch_id):
     if request.method == 'POST':
         watch = Watch.objects.get(id=watch_id)

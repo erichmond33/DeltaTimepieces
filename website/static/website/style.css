@@ -168,13 +168,13 @@ body {
   }
 #nav {
     background-color: transparent;
-    transition: all .3s ease-in-out;
+    transition: background-color 0.3s ease-in-out;
 }
 #nav.scrolled {
     background-color: rgba(255, 255, 255, 1);
 }
 #logo {
-    transition: all .3s ease-in-out
+    transition: filter 0.3s ease-in-out;
 }
 #logo.invert {
     filter: invert(1);

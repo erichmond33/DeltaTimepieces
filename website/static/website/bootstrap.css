@@ -8068,6 +8068,10 @@ textarea.form-control-lg {
   text-align: center !important;
 }
 
+.text-preserve {
+  white-space: pre-wrap;
+}
+
 .text-decoration-none {
   text-decoration: none !important;
 }

@@ -17,8 +17,14 @@
             <a href="{% url 'watch' watch.id %}" class="text-decoration-none color-inherit">
                 <p class="card-title old fs-5 mb-0">{{ watch.name }}</p>
                 <div class="d-flex justify-content-between">
-                    <p class="card-text m-0 text-muted">${{ watch.price|intcomma }} • {{ watch.year }}</p>
+                    <p class="card-text mb-4 text-muted">${{ watch.price|intcomma }}</p>
                 </div>
+                {% if all_details %}
+                <p class="fs-6 mb-0 text-muted">Year: {{ watch.year }}</p>
+                <p class="fs-6 mb-0 text-muted">Condition: {{ watch.condition }}</p>
+                <p class="fs-6 mb-0 text-muted">Contents: {{ watch.contents }}</p>
+                <p class="fs-6 mb-0 text-muted">Extra details ⬇ <br><div class="border text-muted text-preserve">{{ watch.details }}</div></p>
+                {% endif %}
             </a>
         </div>
         <div class="position-absolute top-0 end-0">
