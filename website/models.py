@@ -14,8 +14,11 @@ class Watch(models.Model):
     image = models.ImageField(upload_to='images/')
     timestamp = models.DateTimeField(auto_now_add=True)
     our_pick = models.BooleanField(default=False)
+    date_added_to_our_pick = models.DateTimeField(null=True, blank=True)
     timeless = models.BooleanField(default=False)
+    date_added_to_timeless = models.DateTimeField(null=True, blank=True)
     rare_and_iconic = models.BooleanField(default=False)
+    date_added_to_rare_and_iconic = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -28,6 +31,9 @@ class Watch(models.Model):
             if old_instance.image and old_instance.image != self.image:
                 default_storage.delete(old_instance.image.path)
         super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return f'/watch/{self.pk}'
 
     @transaction.atomic
     def delete(self, *args, **kwargs):

@@ -77,6 +77,9 @@ body {
 .black {
     color: #000;
 }
+.grey {
+    color: rgb(243, 243, 243);
+}
 .f-300 {
     font-size: 300%;
 }
@@ -151,13 +154,15 @@ body {
 }
 
 #banner1 {
-    background-image: url('./images/banner.jpg');
+    background-image: url('./images/artwork.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    /* height: 100%;  */
-    /* width: 100%; */
-  }
+    height: 100%;
+}
+.banner-text {
+    background: linear-gradient(transparent 50%, rgba(0, 0, 0, 0.485) 90%);
+}
 #banner2 {
     background-image: url('./images/banner2.jpg');
     background-size: cover;
@@ -205,19 +210,13 @@ body {
     object-fit: cover;
 }
 
-.cta-light {
+/* .cta-light {
     box-shadow: 1px 1px 0px #000, 2px 2px 0px #fff, 3px 3px 0px #000;
-    /* color: #000; */
-    /* border: 3px solid black;
-    border-style: double; */
 }
 
 .cta-dark {
     box-shadow: 1px 1px 0px #000, 2px 2px 0px #fff, 3px 3px 0px #000;
-    /* color: #fff; */
-    /* border: 3px solid white;
-    border-style: double; */
-}
+} */
 
 .cta-dark-inset {
     box-shadow: inset -1px -1px 0 #000,
@@ -233,6 +232,10 @@ body {
     border-bottom: 3px black double;
 }
 
+.border-white-double {
+    border-bottom: 3px white double;
+}
+
 .container, .container-fluid {
     margin-bottom: 100px;
 }
@@ -244,6 +247,10 @@ body {
     margin-left: -1.5rem !important;
     margin-right: -1.5rem !important;
     scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
 
 #about {

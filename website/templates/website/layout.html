@@ -7,6 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@46,400,0,0" />
     <link href="{% static 'website/style.css' %}" rel="stylesheet">
+    <link rel="icon" href="{% static 'website/images/icon.png' %}" type="image/x-icon">
     <title>Delta Timepieces</title>
     {% block head %}
     {% endblock %}
@@ -23,15 +24,15 @@
                 </picture>
             </a>
             <div class="bg-white rounded d-flex align-items-center p-sm-0 p-0">
-                <button class="navbar-toggler p-sm-3 p-2 rounded-0" id="menu" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                <button class="navbar-toggler p-sm-3 p-2_5 rounded-0" id="menu" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                     aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                     <img src="{% static 'website/images/menu2.svg' %}" alt="Menu" width="25">
                 </button>
-                <button type="button" id="cart" class="navbar-toggler p-sm-3 p-2 rounded-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button type="button" id="cart" class="navbar-toggler p-sm-3 p-2_5 rounded-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <div class="position-relative h-100 w-100">
                         <img src="{% static 'website/images/cart2.svg' %}" alt="Cart" width="25">
                             {% if cart|length > 0 %}
-                            <div class="fs-10 position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">{{ cart|length }}</div>
+                            <div class="fs-10 position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark old">{{ cart|length }}</div>
                             {% endif %}
                         </div>
                 </button>
@@ -63,7 +64,7 @@
                             <a class="btn nav-link mx-2 px-2 rounded-0 position-relative" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" width="25">
                                 <img class="" src="{% static 'website/images/cart2.svg' %}" alt="Cart" width="25">
                                 {% if cart|length > 0 %}
-                                <div class="fs-10 position-absolute top-0 end-0 badge rounded-pill bg-dark">{{ cart|length }}</div>
+                                <div class="fs-10 position-absolute top-0 end-0 badge rounded-pill bg-dark old">{{ cart|length }}</div>
                                 {% endif %}
                             </a>
                         </li>

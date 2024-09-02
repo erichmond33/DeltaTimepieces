@@ -5,7 +5,7 @@
         <h4 class="">Contact</h4>
         <div class="col-12">
             <div class="form-floating">
-                <input type="text" class="form-control" placeholder="" name="contact" required>
+                <input type="text" class="form-control" placeholder="contact" name="contact" required>
                 <label for="contact" class="form-label">Email or phone number</label>
                 <div class="invalid-feedback">
                     Email or phone number is required.
@@ -16,7 +16,7 @@
         <h4 class="">Delivery</h4>
         <div class="col-sm-6">
             <div class="form-floating">
-                <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                <input type="text" class="form-control" id="firstName" placeholder="firstName" value="" name="firstName" required>
                 <label for="firstName" class="form-label">First name</label>
                 <div class="invalid-feedback">
                     Valid first name is required.
@@ -26,7 +26,7 @@
         
         <div class="col-sm-6">
             <div class="form-floating">
-                <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                <input type="text" class="form-control" id="lastName" placeholder="lastName" value="" name="lastName" required>
                 <label for="lastName" class="form-label">Last name</label>
                 <div class="invalid-feedback">
                     Valid last name is required.
@@ -36,7 +36,7 @@
         
         <div class="col-12">
             <div class="form-floating">
-                <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+                <input type="text" class="form-control" id="address" placeholder="1234 Main St" name="address" required>
                 <label for="address" class="form-label">Address</label>
                 <div class="invalid-feedback">
                     Please enter your shipping address.
@@ -46,14 +46,14 @@
         
         <div class="col-12">
             <div class="form-floating">
-                <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+                <input type="text" class="form-control" id="address2" placeholder="Apartment or suite" name="address2">
                 <label for="address2" class="form-label">Apartment, suite, etc (Optional)</label>
             </div>
         </div>
         
         <div class="col-md-5">
             <div class="form-floating">
-                <input type="text" class="form-control" id="city" placeholder="" required>
+                <input type="text" class="form-control" id="city" placeholder="city" name="city" required>
                 <label for="city" class="form-label">City</label>
                 <div class="invalid-feedback">
                     City required.
@@ -63,7 +63,7 @@
 
         <div class="col-md-4 ">
             <div class="form-floating">
-                <select class="form-select" id="state" required>
+                <select class="form-select" id="state" name="state" required>
                     <option value="">Choose...</option>
                     <option data-alternate-values="[&quot;Alabama&quot;]" value="AL">Alabama</option>
                     <option data-alternate-values="[&quot;Alaska&quot;]" value="AK">Alaska</option>
@@ -144,7 +144,7 @@
 
         <div class="col-md-3">
             <div class="form-floating">
-                <input type="text" class="form-control" id="zip" placeholder="xxx" required>
+                <input type="text" class="form-control" id="zip" placeholder="xxx" name="zip" required>
                 <label for="zip" class="form-label">Zip</label>
                 <div class="invalid-feedback">
                     Zip code required.
@@ -154,22 +154,17 @@
 
         <div class="col-12">
             <div class="form-floating">
-                <input type="text" class="form-control" id="" placeholder="" value="United States" name="country" disabled>
-                <label for="" class="form-label">Country</label>
+                <input type="text" class="form-control" id="country" placeholder="" value="United States" name="country" disabled>
+                <label for="country" class="form-label">Country</label>
             </div>
         </div>
 
         <div class="col-12">
             <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="same-address" checked
-                    onchange="toggleBillingAddress()">
-                <label class="form-check-label" for="same-address">Shipping address is the same as my billing
+                <input type="checkbox" class="form-check-input" id="sameAddress" checked
+                    onchange="toggleBillingAddress()" name="sameAddress" value="True">
+                <label class="form-check-label" for="sameAddress">Shipping address is the same as my billing
                     address</label>
-            </div>
-
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="save-info">
-                <label class="form-check-label" for="save-info">Save this information for next time</label>
             </div>
         </div>
 
@@ -177,8 +172,8 @@
             <h4 class="mb-3">Billing Address</h4>
             <div class="col-sm-6">
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
-                    <label for="firstName" class="form-label">First name</label>
+                    <input type="text" class="form-control" id="billingFirstName" placeholder="billingFirstName" value="" name="billingFirstName" required>
+                    <label for="billingFirstName" class="form-label">First name</label>
                     <div class="invalid-feedback">
                         Valid first name is required.
                     </div>
@@ -187,8 +182,8 @@
             
             <div class="col-sm-6">
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
-                    <label for="lastName" class="form-label">Last name</label>
+                    <input type="text" class="form-control" id="billingLastName" placeholder="billingLastName" value="" name="billingLastName" required>
+                    <label for="billingLastName" class="form-label">Last name</label>
                     <div class="invalid-feedback">
                         Valid last name is required.
                     </div>
@@ -197,8 +192,8 @@
             
             <div class="col-12">
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
-                    <label for="address" class="form-label">Address</label>
+                    <input type="text" class="form-control" id="billingAddress" placeholder="1234 Main St" name="billingAddress" required>
+                    <label for="billingAddress" class="form-label">Address</label>
                     <div class="invalid-feedback">
                         Please enter your shipping address.
                     </div>
@@ -207,15 +202,15 @@
             
             <div class="col-12">
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
-                    <label for="address2" class="form-label">Apartment, suite, etc (Optional)</label>
+                    <input type="text" class="form-control" id="billingAddress2" placeholder="Apartment or suite" name="billingAddress2">
+                    <label for="billingAddress2" class="form-label">Apartment, suite, etc (Optional)</label>
                 </div>
             </div>
             
             <div class="col-md-5">
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="city" placeholder="" required>
-                    <label for="city" class="form-label">City</label>
+                    <input type="text" class="form-control" id="billingCity" placeholder="billingCity" name="billingCity" required>
+                    <label for="billingCity" class="form-label">City</label>
                     <div class="invalid-feedback">
                         City required.
                     </div>
@@ -224,7 +219,7 @@
     
             <div class="col-md-4 ">
                 <div class="form-floating">
-                    <select class="form-select" id="state" required>
+                    <select class="form-select" id="billingState" name="billingState" required>
                         <option value="">Choose...</option>
                         <option data-alternate-values="[&quot;Alabama&quot;]" value="AL">Alabama</option>
                         <option data-alternate-values="[&quot;Alaska&quot;]" value="AK">Alaska</option>
@@ -296,7 +291,7 @@
                         <option data-alternate-values="[&quot;Armed Forces Pacific&quot;]" value="AP">Armed Forces Pacific
                         </option>
                     </select>
-                    <label for="state" class="form-label">State</label>
+                    <label for="billingState" class="form-label">State</label>
                     <div class="invalid-feedback">
                         Please provide a valid state.
                     </div>
@@ -305,8 +300,8 @@
     
             <div class="col-md-3">
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="zip" placeholder="xxx" required>
-                    <label for="zip" class="form-label">Zip</label>
+                    <input type="text" class="form-control" id="billingZip" placeholder="xxx" name="billingZip" required>
+                    <label for="billingZip" class="form-label">Zip</label>
                     <div class="invalid-feedback">
                         Zip code required.
                     </div>
@@ -315,8 +310,8 @@
     
             <div class="col-12">
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="" placeholder="" value="United States" name="country" disabled>
-                    <label for="" class="form-label">Country</label>
+                    <input type="text" class="form-control" id="billingCountry" placeholder="" value="United States" name="billingCountry" disabled>
+                    <label for="billingCountry" class="form-label">Country</label>
                 </div>
             </div>
         </div>
@@ -325,16 +320,15 @@
         <div class="col-12">
             <div class="">
                 <div class="form-check form-check-inline">
-                    <input id="wire" name="paymentMethod" type="radio" class="form-check-input" required>
+                    <input id="wire" name="paymentMethod" type="radio" class="form-check-input" value="wire" required>
                     <label class="form-check-label" for="wire">Wire</label>
                     </div>
                     <div class="form-check form-check-inline">
-                    <input id="zelle" name="paymentMethod" type="radio" class="form-check-input" required>
+                    <input id="zelle" name="paymentMethod" type="radio" class="form-check-input" value="zelle" required>
                     <label class="form-check-label" for="zelle">Zelle</label>
                     </div>
             </div>
-            <p class="text-muted">We Accept Wire Transfer/Zelle/Crypto for payment. Please reach out to us to confirm
-                what you are buying prior to sending payment, and receive wiring info & payment details.</p>
+            <p class="text-muted mt-3">We Accept Wire Transfer/Zelle for payment.<br><br>Prior to sending payment, we will reach out via the email address/phone number you provided above to provide wiring info and payment details.<br><br>For any questions, don't hesitate to call or email us at <a class="text-decoration-underline" href="tel:(870) 351-9816">(870) 351-9816</a> and <a class="text-decoration-underline" href="mailto:deltatimepiecesllc@gmail.com">deltatimepiecesllc@gmail.com</a></p>
         </div>
     </div>
 
@@ -345,7 +339,7 @@
     
 <script>
     function toggleBillingAddress() {
-        const sameAddressCheckbox = document.getElementById('same-address');
+        const sameAddressCheckbox = document.getElementById('sameAddress');
         const billingAddressDiv = document.getElementById('billing-address');
         const billingInputs = billingAddressDiv.querySelectorAll('input, select');
 

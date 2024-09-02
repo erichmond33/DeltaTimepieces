@@ -13,9 +13,9 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     # get the 6 latest watches
     newest_watches = Watch.objects.all().order_by('-id')[:3]
-    our_picks = Watch.objects.filter(our_pick=True)
-    timeless = Watch.objects.filter(timeless=True)
-    rare_and_iconic = Watch.objects.filter(rare_and_iconic=True)
+    our_picks = Watch.objects.filter(our_pick=True).order_by('date_added_to_our_pick')[:3]
+    timeless = Watch.objects.filter(timeless=True).order_by('date_added_to_timeless')[:3]
+    rare_and_iconic = Watch.objects.filter(rare_and_iconic=True).order_by('date_added_to_rare_and_iconic')[:3]
     return render(request, 'website/index.html', {'newest_watches': newest_watches, 'our_picks': our_picks, 'timeless': timeless, 'rare_and_iconic': rare_and_iconic})
 
 @login_required
@@ -29,14 +29,24 @@ def add_view(request):
         contents = request.POST['contents']
         details = request.POST['details']
 
-        our_picks = request.POST.get('our_picks', False)
-        our_pick = True if our_picks != False else False
-        timeless = request.POST.get('timeless', False)
-        timeless = True if timeless != False else False
-        rare_and_iconic = request.POST.get('rare_and_iconic', False)
-        rare_and_iconic = True if rare_and_iconic != False else False
+        date_added_to_our_pick = None
+        date_added_to_timeless = None
+        date_added_to_rare_and_iconic = None
 
-        watch = Watch.objects.create(name=name, price=price, year=year, image=image, condition=condition, contents=contents, details=details, our_pick=our_pick, timeless=timeless, rare_and_iconic=rare_and_iconic)
+        our_picks = request.POST.get('our_picks', False)
+        if our_picks != False:
+            our_picks = True
+            date_added_to_our_pick = datetime.now()
+        timeless = request.POST.get('timeless', False)
+        if timeless != False:
+            timeless = True
+            date_added_to_timeless = datetime.now()
+        rare_and_iconic = request.POST.get('rare_and_iconic', False)
+        if rare_and_iconic != False:
+            rare_and_iconic = True
+            date_added_to_rare_and_iconic = datetime.now()
+
+        watch = Watch.objects.create(name=name, price=price, year=year, image=image, condition=condition, contents=contents, details=details, our_pick=our_picks, timeless=timeless, rare_and_iconic=rare_and_iconic, date_added_to_our_pick=date_added_to_our_pick, date_added_to_timeless=date_added_to_timeless, date_added_to_rare_and_iconic=date_added_to_rare_and_iconic)
         
         try: 
             images = request.FILES.getlist('images')
@@ -91,13 +101,25 @@ def edit_view(request, watch_id):
             watch.details = details
 
         our_picks = request.POST.get('our_picks', False)
-        watch.our_pick = True if our_picks != False else False
+        if our_picks != False:
+            watch.our_pick = True
+            watch.date_added_to_our_pick = datetime.now()
+        else:
+            watch.our_pick = False
         
         timeless = request.POST.get('timeless', False)
-        watch.timeless = True if timeless != False else False
+        if timeless != False:
+            watch.timeless = True
+            watch.date_added_to_timeless = datetime.now()
+        else:
+            watch.timeless = False
         
         rare_and_iconic = request.POST.get('rare_and_iconic', False)
-        watch.rare_and_iconic = True if rare_and_iconic != False else False
+        if rare_and_iconic != False:
+            watch.rare_and_iconic = True
+            watch.date_added_to_rare_and_iconic = datetime.now()
+        else:
+            watch.rare_and_iconic = False
         
         watch.save()
 
@@ -119,11 +141,65 @@ def edit_view(request, watch_id):
 
 def checkout_view(request):
     if request.method == 'GET':
+        return render(request, 'website/checkout.html')
+    elif request.method == 'POST':
+        contact = request.POST['contact']
+        first_name = request.POST['firstName']
+        last_name = request.POST['lastName']
+        address = request.POST['address']
+        address2 = request.POST['address2']
+        city = request.POST['city']
+        state = request.POST['state']
+        zip_code = request.POST['zip']
+        country = "United States"
+
+        shipping_same_as_billing = request.POST.get('sameAddress', False)
+        if shipping_same_as_billing == False:
+            billing_first_name = request.POST['billingFirstName']
+            billing_last_name = request.POST['billingLastName']
+            billing_address = request.POST['billingAddress']
+            billing_address2 = request.POST['billingAddress2']
+            billing_city = request.POST['billingCity']
+            billing_state = request.POST['billingState']
+            billing_zip_code = request.POST['billingZip']
+            billing_country = "United States"
+
+        payment_method = request.POST['paymentMethod']
+
+        header = f"{first_name} {last_name} placed an order."
+        message = f"{header}\n\n--\n\n"
+        message += f"Contact: {contact}\nFirst Name: {first_name}\nLast Name: {last_name}\nAddress: {address}\nApartment: {address2}\nCity: {city}\nState: {state}\nZip Code: {zip_code}\nCountry: {country}\n\n"
+        if shipping_same_as_billing == False:
+            message += f"Billing First Name: {billing_first_name}\nBilling Last Name: {billing_last_name}\nBilling Address: {billing_address}\nBilling Address Apartment: {billing_address2}\nBilling City: {billing_city}\nBilling State: {billing_state}\nBilling Zip Code: {billing_zip_code}\nBilling Country: {billing_country}\n\n"
+        message += f"Payment Method: {payment_method}\n\n"
+        message += "Items:\n"
         cart = request.session.get('cart', [])
         watches_in_cart = Watch.objects.filter(id__in=cart)
         total = sum([watch.price for watch in watches_in_cart])
+        for watch in watches_in_cart:
+            # link to the watch
+            message += f"{watch.name} - ${watch.price} - {request.get_host()}{watch.get_absolute_url()}\n"
+        message += f"\nTotal: ${total}"
+        
+        load_dotenv('./website/keys.env')
 
-        return render(request, 'website/checkout.html', {'cart': watches_in_cart, 'total': total})
+        try:
+            send_mail(
+                f'New order from {first_name} {last_name}',
+                message,
+                os.getenv('EMAIL_HOST_USER'),
+                [os.getenv('EMAIL_HOST_RECEIVER')],
+                fail_silently=False
+            )
+            status_message_for_user = "Order placed successfully! We will get back to you as soon as possible."
+            messages.success(request, status_message_for_user)
+        except Exception as e:
+            status_message_for_user = f"Order failed to send. We aren't sure what went wrong. We are very sorry. Please give us a call instead (870) 351-9816"
+            messages.error(request, status_message_for_user)
+
+        request.session['cart'] = []
+
+        return redirect('index')
     
 def contact_view(request, form_name):
     if request.method == 'POST':

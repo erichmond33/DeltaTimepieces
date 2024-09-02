@@ -42,9 +42,7 @@ elif DEBUG == False:
     CSRF_COOKIE_SECURE = True
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
-print(DEBUG, SECURE_HSTS_PRELOAD)
-print(SECURE_SSL_REDIRECT, SESSION_COOKIE_SECURE, CSRF_COOKIE_SECURE, SECURE_HSTS_INCLUDE_SUBDOMAINS, SECURE_HSTS_PRELOAD)
-
+    
 ALLOWED_HOSTS = ["deltatimepiecesllc.com", "www.deltatimepiecesllc.com", "144.202.17.114", "127.0.0.1", "delta-timepieces-e966006c84b4.herokuapp.com"]
 
 

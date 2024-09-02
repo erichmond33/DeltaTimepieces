@@ -13,6 +13,7 @@ bg-grey
         <div class="row g-5">
             <div class="col-md-7 col-12 mx-auto">
                 <h1 class="mb-4">Leave us a message</h1>
+                <p class="text-muted">or call us <a class="text-decoration-underline" href="tel:(870) 351-9816">(870) 351-9816</a></p>
                 <form action="{% url 'contact' 'general' %}" method="post" class="">
                     {% csrf_token %}
                     <div class="row">
