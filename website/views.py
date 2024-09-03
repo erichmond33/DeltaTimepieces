@@ -287,10 +287,24 @@ def add_or_remove_from_cart(request, watch_id, action):
     })
     
 def inventory_view(request):
+    if request.method == 'POST':
+        watches, sort_by_tag, sort_by_tags = sort(request)
+
+        inventory_cards = render_to_string('website/inventory_cards.html', {'watches': watches, 'sort_by_tag': sort_by_tag, 'sort_by_tags': sort_by_tags}, request=request)
+
+        return JsonResponse({
+            'success': True,
+            'inventory_cards': inventory_cards
+        })
+    elif request.method == 'GET':
+        watches, sort_by_tag, sort_by_tags = sort(request)
+
+        return render(request, 'website/inventory.html', {'watches': watches, 'sort_by_tag': sort_by_tag, 'sort_by_tags': sort_by_tags})
+    
+def sort(request):
     watches = Watch.objects.all().order_by('-timestamp')
     sort_by_tags = ['Newest', 'Oldest', 'Price, low to high', 'Price, high to low', 'Year, old to new', 'Year, new to old']
     sort_by_tag = 'Newest'
-
 
     sort_by = request.GET.get('sort_by')
     if sort_by == 'Oldest':
@@ -309,9 +323,8 @@ def inventory_view(request):
         watches = watches.order_by('-year')
         sort_by_tag = "Year, new to old"
 
-    scroll = True if request.GET.get('sort_by') else False
+    return watches, sort_by_tag, sort_by_tags
 
-    return render(request, 'website/inventory.html', {'watches': watches, 'sort_by_tag': sort_by_tag, 'sort_by_tags': sort_by_tags, 'scroll': scroll})
 
 def watch_view(request, watch_id):
     watch = Watch.objects.get(id=watch_id)
