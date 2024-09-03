@@ -31,6 +31,7 @@ urlpatterns = [
     path("contact/<str:form_name>/", contact_view, name="contact"),
     path("add_to_cart/<int:watch_id>/", add_to_cart, name="add_to_cart"),
     path("remove_from_cart/<int:watch_id>/", remove_from_cart, name="remove_from_cart"),
+    path("add_or_remove_from_cart/<int:watch_id>/<str:action>/", add_or_remove_from_cart, name="add_or_remove_from_cart"),
     path("delete_image/<int:image_id>/", delete_image, name="delete_image"),
     path("delete_watch/<int:watch_id>/", delete_watch, name="delete_watch"),
     path("privacy/", privacy, name="privacy"),

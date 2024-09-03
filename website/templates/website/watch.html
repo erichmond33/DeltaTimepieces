@@ -24,28 +24,20 @@
             <div class="col-lg-5 col-12">
                 <div class="sticky-lg-top" style="top: 200px;">
                     <p class="fs-2 old text-uppercase">{{ watch.name }}</p>
-                    <p class="fs-4 text-muted mb-2">Year: {{ watch.year }}</p>
-                    <p class="fs-4 text-muted mb-2">Condition: {{ watch.condition }}</p>
-                    <p class="fs-4 text-muted mb-4">Contents: {{ watch.contents }}</p>
+                    <p class="fs-5 text-muted mb-2">Year: {{ watch.year }}</p>
+                    <p class="fs-5 text-muted mb-2">Condition: {{ watch.condition }}</p>
+                    <p class="fs-5 text-muted mb-4">Contents: {{ watch.contents }}</p>
                     <p class="fs-3 old">${{ watch.price|intcomma }} <i class="small">+ shipping</i></p>
                     <hr>
-                    <div class="mb-5">
+                    <div class="mb-5" id="watchButton">
                         {% if watch in cart %}
-                            <a href="{% url 'checkout' %}" class="py-2 btn btn-dark rounded old cta-dark fs-5 w-100">
-                                Checkout
-                            </a>
+                            {% include 'website/checkout_button.html' %}
                         {% else %}
-                            <form action="{% url 'add_to_cart' watch.id %}" method="post" class="w-100">
-                                {% csrf_token %}
-                                <input type="hidden" name="watch_id" value="{{ watch.id }}">
-                                <button type="submit" class="py-2 btn btn-dark rounded old cta-dark fs-5 w-100">
-                                    Add to cart
-                                </button>
-                            </form>
+                            {% include 'website/add_to_cart_button.html' %}
                         {% endif %}
                     </div>
                     {% if watch.details %}
-                        <p class="fs-4 mb-4 text-muted text-preserve">{{ watch.details }}</p>
+                        <p class="fs-5 mb-4 text-muted text-preserve">{{ watch.details }}</p>
                     {% endif %}
                 </div>
             </div>

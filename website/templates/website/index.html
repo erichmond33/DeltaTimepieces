@@ -14,9 +14,11 @@
                     <p class="white fs-5 my-4">
                         The easiest way to buy high-quality luxury watches
                     </p>
-                    <button class="px-5 py-2 btn btn-light rounded old fs-5 w-sm-auto w-100">
+                    <a href="{% url 'inventory' %}">
+                        <button class="px-5 py-2 btn btn-light rounded old fs-5 w-sm-auto w-100">
                         Shop now
-                    </button>
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -51,6 +53,7 @@
 
 {% include 'website/category_section.html' with section_title="Our picks" watches=our_picks shop_all_url='inventory' %}
 
+{% if our_picks|length > 0 and timeless|length > 0 %}
 <div class="container g-md-4 g-0 mt-5">
     <div class="row g-0">
         <div class="col-12">
@@ -58,6 +61,7 @@
         </div>
     </div>
 </div>
+{% endif %}
 
 {% include 'website/category_section.html' with section_title="Timeless" watches=timeless shop_all_url='inventory' %}
 

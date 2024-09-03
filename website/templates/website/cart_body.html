@@ -12,10 +12,9 @@
             </a>
             <h6 class="fw-bolder fst-italic">${{ watch.price }}</h6>
             <div class="d-flex justify-content-end align-items-end flex-grow-1">
-                <form action="{% url 'remove_from_cart' watch.id %}" method="post" class="m-0">
-                    {% csrf_token %}
+                <span onclick="updateCart('{{ watch.id }}', 'remove')">
                     <button class="btn btn-danger btn-sm py-0" type="submit">Remove</button>
-                </form>
+                </span>
             </div>
         </div>
     </div>

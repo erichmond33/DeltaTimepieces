@@ -1,4 +1,7 @@
 from django.shortcuts import render
+from django.urls import reverse
+from django.http import JsonResponse
+from django.template.loader import render_to_string
 from .models import *
 from django.shortcuts import redirect
 from datetime import datetime
@@ -242,15 +245,8 @@ def add_to_cart(request, watch_id):
     if watch_id not in cart:
         cart.append(watch_id)
         request.session['cart'] = cart
-
-    referer = request.META.get('HTTP_REFERER')
-    if '#' in referer:
-        base_url, _ = referer.split('#', 1)
-        redirect_url = f"{base_url}#watch-{watch_id}"
-    else:
-        redirect_url = f"{referer}#watch-{watch_id}"
     
-    return redirect(redirect_url)
+    return redirect(request.META.get('HTTP_REFERER'))
 
 def remove_from_cart(request, watch_id):
     cart = request.session.get('cart', [])
@@ -260,6 +256,35 @@ def remove_from_cart(request, watch_id):
 
     redirect_url = request.META.get('HTTP_REFERER')
     return redirect(redirect_url)
+
+def add_or_remove_from_cart(request, watch_id, action):
+    cart = request.session.get('cart', [])
+    if action == 'add':
+        if watch_id not in cart:
+            cart.append(watch_id)
+    elif action == 'remove':
+        if watch_id in cart:
+            cart.remove(watch_id)
+    request.session['cart'] = cart
+    watches_in_cart = Watch.objects.filter(id__in=cart)
+    total = sum([watch.price for watch in watches_in_cart])
+    cart_length = len(watches_in_cart)
+    
+    context = {'request': request, 'cart': watches_in_cart, 'total': total, "watch": Watch.objects.get(id=watch_id)}
+
+    cart_modal = render_to_string('website/cart.html', context, request=request)
+    cart_accordion = render_to_string('website/cart_accordion.html', context, request=request)
+    add_to_cart_button = render_to_string('website/add_to_cart_button.html', context, request=request)
+    checkout_button = render_to_string('website/checkout_button.html', context, request=request)
+
+    return JsonResponse({
+        'success': True,
+        'cart_modal': cart_modal,
+        'cart_accordion': cart_accordion,
+        'cart_length': cart_length,
+        'add_to_cart_button': add_to_cart_button,
+        'checkout_button': checkout_button
+    })
     
 def inventory_view(request):
     watches = Watch.objects.all().order_by('-timestamp')
@@ -291,6 +316,7 @@ def inventory_view(request):
 def watch_view(request, watch_id):
     watch = Watch.objects.get(id=watch_id)
     images = [watch.image] + [image.image for image in watch.secondary_images.all()]
+    
     return render(request, 'website/watch.html', {'watch': watch, 'images': images})
 
 @login_required

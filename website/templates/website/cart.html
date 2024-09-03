@@ -1,0 +1,22 @@
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" data-bs-show="true" show>
+    <div class="modal-dialog modal-fullscreen-sm-down modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                {% include 'website/cart_header.html' %}
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mx-md-4 mx-0">
+                    {% include 'website/cart_body.html' %}
+                </div>
+                {% if cart|length > 0 %}
+                <a href="{% url 'checkout' %}">
+                    <button class="mt-3 py-2 btn btn-dark rounded old cta-dark fs-5 w-100">
+                        Checkout
+                    </button>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
