@@ -154,7 +154,7 @@ body {
 }
 
 #banner1 {
-    background-image: url('./images/artwork.png');
+    background-image: url('./images/banner8.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -164,7 +164,7 @@ body {
     background: linear-gradient(transparent 50%, rgba(0, 0, 0, 0.485) 90%);
 }
 #banner2 {
-    background-image: url('./images/banner2.jpg');
+    background-image: url('./images/banner9.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -177,6 +177,7 @@ body {
 }
 #nav.scrolled {
     background-color: rgba(255, 255, 255, 1);
+    border-bottom: 1px solid #dee2e6;
 }
 #logo {
     transition: filter 0.3s ease-in-out;
