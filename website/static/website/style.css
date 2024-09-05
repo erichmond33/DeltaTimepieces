@@ -177,7 +177,6 @@ body {
 }
 #nav.scrolled {
     background-color: rgba(255, 255, 255, 1);
-    border-bottom: 1px solid #dee2e6;
 }
 #logo {
     transition: filter 0.3s ease-in-out;
@@ -318,6 +317,19 @@ body {
 .img-header {
     aspect-ratio: 30/10;
 }
+#sms {
+    position: fixed;
+    bottom: 4rem;
+    right: 1rem;
+    width: 48px;
+    height: 48px;
+    z-index: 1000;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+.shop {
+    width: 100%;
+}
 @media (max-width: 991.98px) {
     .scrollable-row {
         margin-left: -.5rem !important;
@@ -351,5 +363,10 @@ body {
     }
     .img-4x3 {
         aspect-ratio: 5/4;
+    }
+}
+@media (max-width: 576px) {
+    .shop {
+        width: 75%;
     }
 }

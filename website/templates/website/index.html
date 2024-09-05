@@ -3,6 +3,8 @@
 
 {% block body %}
 
+{% include 'website/text.html' %}
+
 <div class="container-fluid" id="banner">
     <div class="row h-100">
         <div class="col-lg-6 col-12 p-0" id="banner1">
@@ -15,7 +17,7 @@
                         The easiest way to buy high-quality luxury watches
                     </p>
                     <a href="{% url 'inventory' %}">
-                        <button class="px-5 py-2 btn btn-light rounded old fs-5 w-sm-auto w-100">
+                        <button class="px-5 py-2 btn btn-light rounded old fs-5 shop">
                         Shop now
                         </button>
                     </a>
@@ -26,7 +28,6 @@
         </div>
     </div>
 </div>
-
 
 {% include 'website/category_section.html' with section_title="New arrivals" watches=newest_watches shop_all_url='inventory' %}
 
@@ -204,19 +205,27 @@
 document.addEventListener('DOMContentLoaded', function () {
     var nav = document.getElementById('nav');
     var logo = document.getElementById('logo');
+    var text = document.getElementById('sms');
     var scrolled = false;
+
+    text.classList.remove('rounded-circle');
+    text.classList.add('rounded');
 
     window.addEventListener('scroll', function () {
         if (window.scrollY > 150 && !scrolled) {
             requestAnimationFrame(function () {
                 nav.classList.add('scrolled');
                 logo.classList.add('invert');
+                text.classList.remove('rounded');
+                text.classList.add('rounded-circle');
                 scrolled = true;
             });
         } else if (window.scrollY <= 150 && scrolled) {
             requestAnimationFrame(function () {
                 nav.classList.remove('scrolled');
                 logo.classList.remove('invert');
+                text.classList.remove('rounded-circle');
+                text.classList.add('rounded');
                 scrolled = false;
             });
         }
