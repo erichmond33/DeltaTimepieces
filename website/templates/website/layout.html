@@ -47,10 +47,13 @@
                     <ul class="navbar-nav nav-body justify-content-end align-items-center ms-auto px-0 py-2 old">
     
                         <li class="nav-item">
-                            <a class="nav-link active ps-lg-3 ps-0" aria-current="page" href="{% url 'index' %}">Home</a>
+                            <a class="nav-link" href="{% url 'inventory' %}">Shop</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'inventory' %}">Shop</a>
+                            <a class="nav-link" href="{% url 'sell_and_trade' %}">Sell & Trade</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'consignment' %}">Consignment</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link pe-lg-3 pe-0" href="{% url 'contact' 'general' %}">Contact</a>
@@ -179,6 +182,10 @@
 
     {% block body %}    
     {% endblock %}
+
+    {% include 'website/text.html' %}
+    {% include 'website/footer.html' %}
+
     {% csrf_token %}
 </body>
 </html>

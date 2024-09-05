@@ -1,59 +1,94 @@
 {% load static %}
 {% load tz %}
 
-<div class="container-fluid mb-0 bg-black white old bg-grey">
+<div class="container-fluid mb-0 pb-5 bg-black white old bg-grey">
     <div class="container mb-0">
         <div class="row py-5">
-            <div class="col-md-4 col-12">
+            <div class="col-md-4 col-12 mb-3">
                 <div class="text-md-start text-center">
-                    <h2 class="mb-4">
-                        Get in touch
-                    </h2>
-                        <label class="fw-bold">Phone</label>
+                    <h4 class="mb-4">
+                        About us
+                    </h4>
+                    <div>
                         <p>
-                            <a href="tel:870-351-9816">
-                                (870) 351-9816
-                            </a>
+                            We're a group of watch lovers who started Delta Timepieces back in 2020. We were tired of seeing people get ripped off by crazy markups at traditional jewelry stores. So, we decided to shake things up and make awesome timepieces more affordable for everyone.
                         </p>
-                        <label class="fw-bold">Email</label>
                         <p>
-                            <a href="{% url 'contact' 'general' %}">
-                                deltatimepiecesllc@gmail.com
-                            </a>
+                            Also, we're not affiliated with any big brands like Rolex or Omega. We're just a team of enthusiasts who want to share our passion for watches with the world. We source authentic timepieces and sell them to you at unbeatable prices. No fancy marketing gimmicks or inflated prices here - just great watches at fair prices.
                         </p>
-                        <label class="fw-bold">Address</label>
-                        <p>
-                            <a href="#">
-                                225 S Main St, Jonesboro, AR 72405
-                            </a>
-                        </p>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-4 col-12 mb-5">
-                <div class="text-center">
-                    <h2 class="mb-4 text-center">
-                        Follow us
-                    </h2>
-                    <a href="https://www.instagram.com/deltatimepieces/" target="_blank">
-                        <img src="{% static 'website/images/instagram.svg' %}" alt="Instagram" class="img-fluid invert rounded-3" width="50">
-                    </a>
-                    <a href="https://www.facebook.com/p/Delta-Timepieces-100063762565329/" target="_blank">
-                        <img src="{% static 'website/images/facebook.svg' %}" alt="Facebook" class="img-fluid invert rounded-3" width="50">
-                    </a>
-                </div>
+            <div class="col-md-8">
+                <div class="row ps-md-5 p-auto">
+                    <div class="col-6 mb-5">
+                        <div class="text-md-center text-center">
+                            <h4 class="mb-4">
+                                Socials
+                            </h4>
+                            <p>
+                                <a href="https://www.instagram.com/deltatimepieces/" target="_blank">
+                                    Instagram
+                                </a>
+                            </p>
+                            <p>
+                                <a href="https://www.facebook.com/p/Delta-Timepieces-100063762565329/" target="_blank">
+                                    Facebook
+                                </a>
+                            </p>
+                            <p>
+                                <a href="https://www.ebay.com/str/deltatimepieces" target="_blank">
+                                    Ebay
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-6 mx-auto">
+                        <div class="text-md-center text-center">
+                            <h4 class="mb-4">
+                                Get in touch
+                            </h4>
+                                <!-- <label class="fw-bold">Phone</label> -->
+                                <p>
+                                    <a href="tel:870-351-9816">
+                                        Call
+                                    </a>
+                                </p>
+                                <p>
+                                    <a href="sms:870-351-9816?body=Hey%2C%20AJ%20Reyes.%20This%20is%20">
+                                        Text
+                                    </a>
+                                </p>
+                                <!-- <label class="fw-bold">Email</label> -->
+                                <p>
+                                    <a href="{% url 'contact' 'general' %}">
+                                        Email
+                                    </a>
+                                </p>
+                                <!-- <label class="fw-bold">Address</label> -->
+                                <p>
+                                    <a href="https://www.google.com/search?sca_esv=c873461b5e2c612f&rlz=1C5CHFA_enUS964US964&sxsrf=ADLYWIJKgWaXsctvIMVupV--rjKD1aoNNw:1725572373077&q=delta+timepieces+jonesboro+address&ludocid=9253854073856473749&sa=X&ved=2ahUKEwj6ktOC4qyIAxWflokEHSyZFjkQ6BN6BAg4EAI&biw=1866&bih=1070&dpr=1.8" target="_blank">
+                                        Visit
+                                    </a>
+                                </p>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="d-flex justify-content-md-center justify-content-center align-items-center h-100 w-100 flex-grow-1">
+                            <picture>
+                                <img src="{% static 'website/images/logo-full.svg' %}" alt="Logo" class="bg-black img-fluid" width="375px">
+                            </picture>
+                        </div>
+                    </div>
+                </div>    
             </div>
-            <div class="col-md-4 col-12 mx-auto">
-                <div class="d-flex justify-content-md-end justify-content-center align-items-center">
-                    <picture>
-                        <!-- <source media="(min-width: 767.98px)" srcset="{% static 'website/images/logo.svg' %}" width="150"> -->
-                        <img src="{% static 'website/images/logo-full.svg' %}" alt="Logo" class="bg-black img-fluid" width="375px">
-                    </picture>
-                </div>
-            </div>
-
+        </div>
+        <div>
             <div class="col-12 pt-5 text-center border-top">
                 <a href="{% url 'privacy' %}">
                 © Delta Timepieces {% now "Y" %}. All rights reserved.
+                <br>
+                225 S Main St, Jonesboro, AR 72405
                 </a>
             </div>
         </div>

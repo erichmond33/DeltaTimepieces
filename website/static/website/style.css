@@ -31,7 +31,9 @@ body {
     overflow-x: hidden;
     overflow-wrap: break-word;
 }
-
+h1, h2, h3 {
+    font-family: Avenir;
+}
 :root {
     --nav-color: rgb(0, 0, 0);
 }

@@ -1,3 +1,5 @@
+from django.core.mail import EmailMessage
+from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.shortcuts import render
 from django.urls import reverse
 from django.http import JsonResponse
@@ -300,6 +302,55 @@ def inventory_view(request):
         watches, sort_by_tag, sort_by_tags = sort(request)
 
         return render(request, 'website/inventory.html', {'watches': watches, 'sort_by_tag': sort_by_tag, 'sort_by_tags': sort_by_tags})
+
+def sell_and_trade_view(request):
+    return render(request, 'website/sell_and_trade.html')
+
+def consignment_view(request):
+    return render(request, 'website/consignment.html')
+
+def evaluations_view(request, form_name):
+    if request.method == 'POST':
+        name = request.POST['name']
+        phone = request.POST['phone']
+        email = request.POST['email']
+        make = request.POST['make']
+        model = request.POST['model']
+        reference_number = request.POST['referenceNumber']
+        condition = request.POST['condition']
+        contents = request.POST['contents']
+        images = request.FILES.getlist('images')
+        
+        header = ""
+        if form_name == "sell_and_trade":
+            header = f"{name} replied to the \"Sell and Trade\" form."
+            short_header = "Sell and Trade form"
+        elif form_name == "consignment":
+            header = f"{name} replied to the \"Consignment\" form."
+            short_header = "Consignment form"
+        
+        load_dotenv('./website/keys.env')
+        try:
+            email_message = EmailMessage(
+                subject=f'New message from {name} ({short_header})',
+                body=f'{header}\n\n--\n\nMake: {make}\nModel: {model}\nReference Number: {reference_number}\nCondition: {condition}\nContents: {contents}\n\nPhone number: {phone}\nEmail: {email}',
+                from_email=os.getenv('EMAIL_HOST_USER'),
+                to=[os.getenv('EMAIL_HOST_RECEIVER')]
+            )
+
+            for image in images:
+                if isinstance(image, InMemoryUploadedFile):
+                    email_message.attach(image.name, image.read(), image.content_type)
+
+            email_message.send(fail_silently=False)
+            
+            status_message_for_user = "Evaluation form sent successfully! We will get back to you as soon as possible."
+            messages.success(request, status_message_for_user)
+        except Exception as e:
+            status_message_for_user = f"Evaluation form failed to send. We aren't sure what went wrong. We are very sorry. Please give us a call instead (870) 351-9816"
+            messages.error(request, status_message_for_user)
+        
+        return redirect('index')
     
 def sort(request):
     watches = Watch.objects.all().order_by('-timestamp')

@@ -1,0 +1,84 @@
+<div class="container-fluid bg-grey mb-0 pb-5">
+    <div class="container mw-lg mb-0 pb-5">
+        <div class="row g-5">
+            <div class="col-md-7 col-12 mx-auto">
+                <h2 class="mb-4 old">Evaluation form</h2>
+                <form action="{% url 'evaluations' form_type %}" method="post" class="" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="name" required>
+                                <label for="name" class="black">Name</label>
+                                <div class="invalid-feedback">
+                                    Please provide your name
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-floating">
+                                <input type="tel" class="form-control" id="phone" name="phone" placeholder="phone" required>
+                                <label for="phone" class="black">Phone number</label>
+                                <div class="invalid-feedback">
+                                    Please provide a valid phone number
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="email"
+                                    required>
+                                <label for="email" class="black">Email</label>
+                                <div class="invalid-feedback">
+                                    Please provide a valid email
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="make" name="make" placeholder="make" required>
+                                <label for="make" class="black">Make</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="model" name="model" placeholder="model" required>
+                                <label for="model" class="black">Model</label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="referenceNumber" name="referenceNumber" placeholder="reference number" required>
+                                <label for="referenceNumber" class="black">Reference Number</label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="condition" name="condition" placeholder="condition" required>
+                                <label for="condition" class="black">Condition</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="contents" name="contents" placeholder="contents" required>
+                                <label for="contents" class="black">Contents (Box, papers, etc)</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="">
+                                <label class="" for="formFile">Images</label>
+                                <input class="form-control py-3" type="file" id="formFile" name="images" multiple required>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <button type="submit" class="py-2 btn btn-dark old rounded fs-5 w-100 cta-dark">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

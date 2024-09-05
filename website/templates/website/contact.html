@@ -2,18 +2,36 @@
 {% load static %}
 
 {% block body-class %}
-bg-grey
 {% endblock %}
 
 {% block body %}
-    
 
-<div class="container-fluid pt-5">
-    <div class="container mw-lg">
+<div class="container-lg g-md-4 g-0">
+    <h1 class="text-center py-5 old text-uppercase">Contact</h1>
+    <img src="{% static 'website/images/inventory4.jpg' %}" class="img-fluid cover mx-md-auto img-header w-100">
+</div>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="old mb-5">Reach us via</h2>
+        </div>
+        <div class="col-md-7 mw-lg mx-auto text-center">
+            <h3>Email</h3>
+            <p class="fs-4 old my-3"><a href="mailto:deltatimepiecesllc@gmail.com">deltatimepiecesllc@gmail.com</a></p>
+            <h3>Phone</h3>
+            <p class="fs-4 old my-3"><a href="tel:870-351-9816">(870) 351-9816</a></p>
+        </div>
+        <div class="col-12">
+            <h2 class="old mt-5">Or use the form ⤵</h2>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid py-5 mb-0 bg-grey">
+    <div class="container mw-lg pb-5 mb-0">
         <div class="row g-5">
             <div class="col-md-7 col-12 mx-auto">
-                <h1 class="mb-4">Leave us a message</h1>
-                <p class="text-muted">or call us <a class="text-decoration-underline" href="tel:(870) 351-9816">(870) 351-9816</a></p>
+                <h2 class="mb-4">Leave us a message</h2>
                 <form action="{% url 'contact' 'general' %}" method="post" class="">
                     {% csrf_token %}
                     <div class="row">

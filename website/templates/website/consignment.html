@@ -1,0 +1,28 @@
+{% extends "website/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+    <div class="container-lg g-md-4 g-0">
+        <h1 class="text-center py-5 old text-uppercase">Consignment</h1>
+        <img src="{% static 'website/images/inventory3.jpg' %}" class="img-fluid cover mx-md-auto img-header w-100">
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col">
+                <h2 class="old mb-4">We are happy to list and sell a watch on your behalf!</h2>
+                <h3 class="old">How it works:</h3>
+                <ol class="my-4">
+                    <li class="my-2">Using the form below, supply us with the information we need to accurately evaluate your watch.</li>
+                    <li class="my-2">We receive your submission and evaluate your timepiece.</li>
+                    <li class="my-2">Our team will send you a consignment agreement via docusign detailing our terms and conditions.</li>
+                    <li class="my-2">Upon receiving your signature, we will email you a prepaid shipping label to send over your watch and contents to us.</li>
+                    <li class="my-2">When it sells, you get paid!</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    
+    {% include 'website/eval_form.html' with form_type="consignment" %}
+
+{% endblock %}
