@@ -1,5 +1,7 @@
 from django.core.mail import EmailMessage
-from django.core.files.uploadedfile import InMemoryUploadedFile
+from PIL import Image
+from io import BytesIO
+from django.core.files.base import ContentFile
 from django.shortcuts import render
 from django.urls import reverse
 from django.http import JsonResponse
@@ -51,11 +53,14 @@ def add_view(request):
             rare_and_iconic = True
             date_added_to_rare_and_iconic = datetime.now()
 
+        image = resize_image(image)
+
         watch = Watch.objects.create(name=name, price=price, year=year, image=image, condition=condition, contents=contents, details=details, our_pick=our_picks, timeless=timeless, rare_and_iconic=rare_and_iconic, date_added_to_our_pick=date_added_to_our_pick, date_added_to_timeless=date_added_to_timeless, date_added_to_rare_and_iconic=date_added_to_rare_and_iconic)
         
         try: 
             images = request.FILES.getlist('images')
             for image in images:
+                image = resize_image(image)
                 WatchSecondaryImage.objects.create(watch=watch, image=image)
         except:
             pass
@@ -76,6 +81,7 @@ def edit_view(request, watch_id):
         try:
             image = request.FILES['image']
             if image:
+                image = resize_image(image)
                 watch.image = image
         except:
             pass
@@ -83,6 +89,7 @@ def edit_view(request, watch_id):
         try: 
             images = request.FILES.getlist('images')
             for image in images:
+                image = resize_image(image)
                 WatchSecondaryImage.objects.create(watch=watch, image=image)
         except:
             pass
@@ -143,6 +150,25 @@ def edit_view(request, watch_id):
             print('our pick')
 
         return render(request, 'website/edit.html', {'watch': watch, 'allow_our_picks': allow_our_picks, 'allow_timeless': allow_timeless, 'allow_rare_and_iconic': allow_rare_and_iconic})
+    
+def resize_image(image):
+    img = Image.open(image)
+    format = img.format
+    max_size = 1024
+    
+    if min(img.width, img.height) > max_size:
+        ratio = max_size / min(img.width, img.height)
+        new_width = int(img.width * ratio)
+        new_height = int(img.height * ratio)
+        
+        img = img.resize((new_width, new_height))
+        print(img.height, img.width)
+    
+    buffer = BytesIO()
+    img.save(buffer, format=format)
+    buffer.seek(0)
+
+    return ContentFile(buffer.getvalue(), name=image.name)
 
 def checkout_view(request):
     if request.method == 'GET':

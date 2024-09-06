@@ -1,14 +1,4 @@
 @font-face {
-    font-family: 'Bodoni';
-    src: url('./fonts/Bodoni-Bold.ttf');
-}
-
-@font-face {
-    font-family: 'Bodoni-Bold';
-    src: url('./fonts/Bodoni-Bold2.ttf');
-}
-
-@font-face {
     font-family: 'Old';
     src: url('./fonts/Old2.otf');
 }
@@ -24,7 +14,7 @@
     font-weight: 500;
 }
 body {
-    font-family: Assistant, Helvetica, Avenir;
+    font-family: Helvetica, Avenir;
     color: black;
     width: 100%;
     max-width: 100%;
@@ -38,7 +28,7 @@ h1, h2, h3 {
     --nav-color: rgb(0, 0, 0);
 }
 .old {
-    font-family: Avenir;
+    font-family: Avenir, Helvetica, sans-serif;
 }
 .invert {
     filter: invert(100);
@@ -53,22 +43,6 @@ h1, h2, h3 {
     /* background: linear-gradient(90deg, #caae91, #fcfcff); */
     /* background-color: #caae913d; */
     background-color: black;
-}
-.bodoni {
-    font-family: Bodoni;
-}
-.bodoni-bold {
-    font-family: Bodoni-Bold;
-}
-.bodoni-light {
-    font-family: Bodoni;
-    text-shadow: 1px 1px 0px #000, 2px 2px 0px #fff;
-    color: #fff;
-}
-.bodoni-dark {
-    font-family: Bodoni;
-    text-shadow: 1px 1px 0px #fff, 2px 2px 0px #000;
-    color: #000;
 }
 .rf {
     font-family: RF;
@@ -156,7 +130,7 @@ h1, h2, h3 {
 }
 
 #banner1 {
-    background-image: url('./images/banner8.jpg');
+    background-image: url('./images/banner.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -166,13 +140,11 @@ h1, h2, h3 {
     background: linear-gradient(transparent 50%, rgba(0, 0, 0, 0.485) 90%);
 }
 #banner2 {
-    background-image: url('./images/banner9.jpg');
+    background-image: url('./images/banner2.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    /* height: 100%; */
-    /* width: 100%; */
-  }
+}
 #nav {
     background-color: transparent;
     transition: background-color 0.3s ease-in-out;
@@ -276,6 +248,11 @@ h1, h2, h3 {
     transition: opacity 0.1s ease-in, opacity 0.3s ease-out;
 }
 
+#add-to-cart-button {
+    height: 48px;
+    width: 48px;
+}
+
 .product-card:hover .add-to-cart {
     display: block !important;
     opacity: 1;
@@ -326,11 +303,20 @@ h1, h2, h3 {
     width: 48px;
     height: 48px;
     z-index: 1000;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px 4px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 }
 .shop {
     width: 100%;
+}
+.custom-tooltip {
+    --bs-tooltip-bg: #ffffff;
+    --bs-tooltip-color: black;
+    --bs-tooltip-opacity: 1;
+    display: none;
+}
+.custom-tooltip .tooltip-inner {
+    box-shadow: 0 4px 8px 4px rgba(0, 0, 0, 0.1);
 }
 @media (max-width: 991.98px) {
     .scrollable-row {
@@ -342,6 +328,10 @@ h1, h2, h3 {
     }
     .nav-break {
         border-left: none;
+    }
+    #banner2 {
+        background-image: none;
+        content: '';
     }
 }
 @media (max-width: 767.98px) {
@@ -365,6 +355,12 @@ h1, h2, h3 {
     }
     .img-4x3 {
         aspect-ratio: 5/4;
+    }
+    .shop {
+        width: 100%;
+    }
+    .custom-tooltip {
+        display: block;
     }
 }
 @media (max-width: 576px) {

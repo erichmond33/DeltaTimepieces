@@ -27,12 +27,12 @@
     </div>
 </div>
 
-{% include 'website/category_section.html' with section_title="New arrivals" watches=newest_watches shop_all_url='inventory' %}
+{% include 'website/category_section.html' with section_title="New arrivals" watches=newest_watches shop_all_url='inventory' loading="eager" %}
 
 <div class="container g-sm-4 g-0 mt-5">
     <div class="row g-0">
         <div class="col-md-6 col-12 pe-md-0 mt-md-4 d-flex">
-            <img src="{% static 'website/images/idek.jpg' %}" alt="About us" id="about-img" class="img-fluid cover img-1x1 h-100">
+            <img src="{% static 'website/images/about.webp' %}" alt="About us" id="about-img" class="img-fluid cover img-1x1 h-100" loading="lazy">
         </div>
         <div class="col-md-6 col-12 ps-md-0 mt-md-4 mt-0 d-flex">
             <div class="d-flex flex-column justify-content-center align-items-start h-100 p-5 bg-pepsi grey fs-6">
@@ -50,19 +50,19 @@
     </div>
 </div>
 
-{% include 'website/category_section.html' with section_title="Our picks" watches=our_picks shop_all_url='inventory' %}
+{% include 'website/category_section.html' with section_title="Our picks" watches=our_picks shop_all_url='inventory' loading="lazy" %}
 
 {% if our_picks|length > 0 and timeless|length > 0 %}
 <div class="container g-md-4 g-0 mt-5">
     <div class="row g-0">
         <div class="col-12">
-            <img src="{% static 'website/images/man2.jpg' %}" alt="About us" id="about-img" class="cover img-4x3 img-fluid">
+            <img src="{% static 'website/images/banner3.webp' %}" alt="About us" id="about-img" class="cover img-4x3 img-fluid" loading="lazy">
         </div>
     </div>
 </div>
 {% endif %}
 
-{% include 'website/category_section.html' with section_title="Timeless" watches=timeless shop_all_url='inventory' %}
+{% include 'website/category_section.html' with section_title="Timeless" watches=timeless shop_all_url='inventory' loading="lazy" %}
 
 <div class="container g-sm-4 g-0 mt-5">
     <div class="row g-0">
@@ -122,12 +122,12 @@
         </div>
     </div>
         <div class="col-md-6 col-12 ps-md-0 mt-md-4 mt-0 d-flex">
-            <img src="{% static 'website/images/find.jpg' %}" alt="About us" id="about-img" class="img-fluid cover h-100 img-1x1 ">
+            <img src="{% static 'website/images/find.webp' %}" alt="About us" id="about-img" class="img-fluid cover h-100 img-1x1" loading="lazy">
         </div>
     </div>
 </div>
 
-{% include 'website/category_section.html' with section_title="Rare & iconic" watches=rare_and_iconic shop_all_url='inventory' %}
+{% include 'website/category_section.html' with section_title="Rare & iconic" watches=rare_and_iconic shop_all_url='inventory' loading="lazy" %}
 
 <div class="container-fluid mt-5 py-5 bg-grey mb-0">
     <div class="container mb-0">
@@ -199,10 +199,17 @@
 </script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+    
     var nav = document.getElementById('nav');
     var logo = document.getElementById('logo');
     var text = document.getElementById('sms');
     var scrolled = false;
+    const tooltip = new bootstrap.Tooltip(text);
+    tooltipShown = false;
 
     text.classList.remove('rounded-circle');
     text.classList.add('rounded');
@@ -224,6 +231,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 text.classList.add('rounded');
                 scrolled = false;
             });
+        }
+
+        if (window.scrollY > 2000 && !tooltipShown) {
+            tooltip.show();
+            tooltipShown = true;
+            setTimeout(() => {
+                tooltip.hide();
+            }, 10000);
         }
     });
 });

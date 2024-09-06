@@ -5,11 +5,11 @@
     <div class="card product-card mb-3">
         <div class="img-container">
             <img src="{{ watch.image.url }}" alt="Product image"
-                class="rounded-0 card-img card-img-top img-3x4 img-zoom object-fit-cover">
+                class="rounded-0 card-img card-img-top img-3x4 img-zoom object-fit-cover" loading="{{ loading }}">
             
             <span class="add-to-cart" id="add-to-cart-{{ watch.id }}" onclick="updateCart('{{ watch.id }}', 'add')">
-                <button type="submit" class="border-dark-subtle border p-1 btn btn-light rounded-pill old fs-6">
-                    <img src="{% static 'website/images/cart_add2.svg' %}" alt="Add to cart">
+                <button type="submit" class="border-dark-subtle border p-1 btn btn-light rounded-pill old fs-6" id="add-to-cart-button">
+                    <img src="{% static 'website/images/cart_add2.svg' %}" alt="Add to cart" width="25px" loading="{{ loading }}">
                 </button>
             </span>
         </div>
