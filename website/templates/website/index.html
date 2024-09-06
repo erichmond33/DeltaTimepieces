@@ -199,17 +199,17 @@
 </script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-
-    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-
-    
     var nav = document.getElementById('nav');
     var logo = document.getElementById('logo');
     var text = document.getElementById('sms');
+    var smsTooltip = document.getElementById('sms-tooltip');
     var scrolled = false;
-    const tooltip = new bootstrap.Tooltip(text);
-    tooltipShown = false;
+    if (performance.navigation.type === 1) {
+        tooltipShown = true;   
+    }
+    else {
+        tooltipShown = false;
+    }
 
     text.classList.remove('rounded-circle');
     text.classList.add('rounded');
@@ -234,11 +234,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         if (window.scrollY > 2000 && !tooltipShown) {
-            tooltip.show();
-            tooltipShown = true;
+            smsTooltip.style.bottom = "56px"
             setTimeout(() => {
-                tooltip.hide();
-            }, 10000);
+                smsTooltip.style.bottom = "-60px"
+                tooltipShown = true
+            }, 7000);
         }
     });
 });

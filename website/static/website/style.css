@@ -20,6 +20,7 @@ body {
     max-width: 100%;
     overflow-x: hidden;
     overflow-wrap: break-word;
+    position: relative;
 }
 h1, h2, h3 {
     font-family: Avenir;
@@ -309,11 +310,18 @@ h1, h2, h3 {
 .shop {
     width: 100%;
 }
+.tooltip, .tooltip-arrow {
+    opacity: 1;
+}
 .custom-tooltip {
     --bs-tooltip-bg: #ffffff;
     --bs-tooltip-color: black;
     --bs-tooltip-opacity: 1;
-    display: none;
+    display: block;
+    position: fixed;
+    bottom: -60px;
+    right: calc(1rem + 48px);
+    transition: all .3s ease;
 }
 .custom-tooltip .tooltip-inner {
     box-shadow: 0 4px 8px 4px rgba(0, 0, 0, 0.1);
@@ -358,9 +366,6 @@ h1, h2, h3 {
     }
     .shop {
         width: 100%;
-    }
-    .custom-tooltip {
-        display: block;
     }
 }
 @media (max-width: 576px) {
