@@ -231,7 +231,7 @@ def checkout_view(request):
                 f'New order from {first_name} {last_name}',
                 message,
                 os.getenv('EMAIL_HOST_USER'),
-                [os.getenv('EMAIL_HOST_RECEIVER')],
+                [os.getenv('EMAIL_HOST_RECEIVER'), os.getenv('EMAIL_HOST_RECEIVER2')],
                 fail_silently=False
             )
             status_message_for_user = "Order placed successfully! We will get back to you as soon as possible."
@@ -277,7 +277,7 @@ def contact_view(request, form_name):
                 f'New message from {name} ({short_header})',
                 f'{header}\n\n--\n\n{message}\n\nPhone number: {phone}\nEmail: {email}',
                 os.getenv('EMAIL_HOST_USER'),
-                [os.getenv('EMAIL_HOST_RECEIVER')],
+                [os.getenv('EMAIL_HOST_RECEIVER'), os.getenv('EMAIL_HOST_RECEIVER2')],
                 fail_silently=False
             )
             status_message_for_user = "Message sent successfully! We will get back to you as soon as possible."
@@ -395,7 +395,7 @@ def evaluations_view(request, form_name):
                 subject=f'New message from {name} ({short_header})',
                 body=f'{header}\n\n--\n\nMake: {make}\nModel: {model}\nReference Number: {reference_number}\nCondition: {condition}\nContents: {contents}\n\nPhone number: {phone}\nEmail: {email}',
                 from_email=os.getenv('EMAIL_HOST_USER'),
-                to=[os.getenv('EMAIL_HOST_RECEIVER')]
+                to=[os.getenv('EMAIL_HOST_RECEIVER'), os.getenv('EMAIL_HOST_RECEIVER2')]
             )
 
             for image in images:
