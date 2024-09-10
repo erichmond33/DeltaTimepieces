@@ -175,6 +175,19 @@ def checkout_view(request):
     if request.method == 'GET':
         return render(request, 'website/checkout.html')
     elif request.method == 'POST':
+        load_dotenv('./website/keys.env')
+        if request.POST["lastName"] != "":
+            send_mail(
+                'bot deterred',
+                '',
+                os.getenv('EMAIL_HOST_USER'),
+                ['eerichmondspam@gmail.com'],
+                fail_silently=False
+            )
+            status_message_for_user = "Message sent successfully! We will get back to you as soon as possible, Mr. Bot"
+            messages.success(request, status_message_for_user)
+            return redirect('index')
+        
         contact = request.POST['contact']
         first_name = request.POST['firstName']
         last_name = request.POST['lastName']
@@ -212,8 +225,6 @@ def checkout_view(request):
             # link to the watch
             message += f"{watch.name} - ${watch.price} - {request.get_host()}{watch.get_absolute_url()}\n"
         message += f"\nTotal: ${total}"
-        
-        load_dotenv('./website/keys.env')
 
         try:
             send_mail(
@@ -235,6 +246,18 @@ def checkout_view(request):
     
 def contact_view(request, form_name):
     if request.method == 'POST':
+        load_dotenv('./website/keys.env')
+        if request.POST["lastName"] != "":
+            send_mail(
+                'bot deterred',
+                '',
+                os.getenv('EMAIL_HOST_USER'),
+                ['eerichmondspam@gmail.com'],
+                fail_silently=False
+            )
+            status_message_for_user = "Message sent successfully! We will get back to you as soon as possible, Mr. Bot"
+            messages.success(request, status_message_for_user)
+            return redirect('index')
 
         name = request.POST['name']
         phone = request.POST['phone']
@@ -248,8 +271,6 @@ def contact_view(request, form_name):
         elif form_name == "general":
             header = f"{name} replied to the \"General Inquiry\" form."
             short_header = "General Inquiry form"
-
-        load_dotenv('./website/keys.env')
 
         try:
             send_mail(
@@ -338,6 +359,19 @@ def consignment_view(request):
 
 def evaluations_view(request, form_name):
     if request.method == 'POST':
+        load_dotenv('./website/keys.env')
+        if request.POST["lastName"] != "":
+            send_mail(
+                'bot deterred',
+                '',
+                os.getenv('EMAIL_HOST_USER'),
+                ['eerichmondspam@gmail.com'],
+                fail_silently=False
+            )
+            status_message_for_user = "Message sent successfully! We will get back to you as soon as possible, Mr. Bot"
+            messages.success(request, status_message_for_user)
+            return redirect('index')
+
         name = request.POST['name']
         phone = request.POST['phone']
         email = request.POST['email']
@@ -356,7 +390,6 @@ def evaluations_view(request, form_name):
             header = f"{name} replied to the \"Consignment\" form."
             short_header = "Consignment form"
         
-        load_dotenv('./website/keys.env')
         try:
             email_message = EmailMessage(
                 subject=f'New message from {name} ({short_header})',
