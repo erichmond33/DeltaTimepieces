@@ -249,6 +249,11 @@ h1, h2, h3 {
     transition: opacity 0.1s ease-in, opacity 0.3s ease-out;
 }
 
+#inventory #add-to-cart-button {
+    height: 48px;
+    width: 48px;
+}
+
 #add-to-cart-button {
     height: 48px;
     width: 48px;
@@ -340,6 +345,10 @@ h1, h2, h3 {
     #banner2 {
         background-image: none;
         content: '';
+    }
+    #inventory #add-to-cart-button {
+        height: 36px;
+        width: 36px;
     }
 }
 @media (max-width: 767.98px) {
