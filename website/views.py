@@ -1,5 +1,6 @@
 from django.core.mail import EmailMessage
 from PIL import Image
+from django.core.files.uploadedfile import InMemoryUploadedFile
 from io import BytesIO
 from django.core.files.base import ContentFile
 from django.shortcuts import render

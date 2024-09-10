@@ -67,8 +67,8 @@
                         </li>
                         {% endif %}
                         <li class="nav-item nav-break">
-                            <a class="btn nav-link mx-2 px-2 rounded-0 position-relative" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" width="25">
-                                <img class="" src="{% static 'website/images/cart2.svg' %}" alt="Cart" width="25">
+                            <a class="btn nav-link mx-2 px-2 rounded-0 position-relative d-flex justify-content-center align-items-center" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <img class="" src="{% static 'website/images/cart2.svg' %}" alt="Cart" width="25" height="25">
 
                                 <div class="fs-10 position-absolute top-0 end-0 badge rounded-pill bg-dark old update-me">{% if cart|length > 0 %}{{ cart|length }}{% endif %}</div>
 

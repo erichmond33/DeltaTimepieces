@@ -23,7 +23,7 @@ body {
     position: relative;
 }
 h1, h2, h3 {
-    font-family: Avenir;
+    font-family: Avenir, Helvetica, sans-serif;
 }
 :root {
     --nav-color: rgb(0, 0, 0);
