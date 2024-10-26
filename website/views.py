@@ -176,17 +176,6 @@ def checkout_view(request):
         return render(request, 'website/checkout.html')
     elif request.method == 'POST':
         load_dotenv('./website/keys.env')
-        if request.POST["lastName"] != "":
-            send_mail(
-                'bot deterred',
-                '',
-                os.getenv('EMAIL_HOST_USER'),
-                ['eerichmondspam@gmail.com'],
-                fail_silently=False
-            )
-            status_message_for_user = "Message sent successfully! We will get back to you as soon as possible, Mr. Bot"
-            messages.success(request, status_message_for_user)
-            return redirect('index')
         
         contact = request.POST['contact']
         first_name = request.POST['firstName']
@@ -226,6 +215,18 @@ def checkout_view(request):
             message += f"{watch.name} - ${watch.price} - {request.get_host()}{watch.get_absolute_url()}\n"
         message += f"\nTotal: ${total}"
 
+        if request.POST["lastName"] != "":
+            send_mail(
+                f'bot deterred – {first_name} {last_name}',
+                f'{header}\n\n--\n\n{message}',
+                os.getenv('EMAIL_HOST_USER'),
+                ['eerichmondspam@gmail.com'],
+                fail_silently=False
+            )
+            status_message_for_user = "Message sent successfully! We will get back to you as soon as possible, Mr. Bot"
+            messages.success(request, status_message_for_user)
+            return redirect('index')
+
         try:
             send_mail(
                 f'New order from {first_name} {last_name}',
@@ -247,17 +248,6 @@ def checkout_view(request):
 def contact_view(request, form_name):
     if request.method == 'POST':
         load_dotenv('./website/keys.env')
-        if request.POST["lastName"] != "":
-            send_mail(
-                'bot deterred',
-                '',
-                os.getenv('EMAIL_HOST_USER'),
-                ['eerichmondspam@gmail.com'],
-                fail_silently=False
-            )
-            status_message_for_user = "Message sent successfully! We will get back to you as soon as possible, Mr. Bot"
-            messages.success(request, status_message_for_user)
-            return redirect('index')
 
         name = request.POST['name']
         phone = request.POST['phone']
@@ -271,6 +261,18 @@ def contact_view(request, form_name):
         elif form_name == "general":
             header = f"{name} replied to the \"General Inquiry\" form."
             short_header = "General Inquiry form"
+
+        if request.POST["lastName"] != "":
+            send_mail(
+                f'bot deterred – {name}',
+                f'{header}\n\n--\n\n{message}\n\nPhone number: {phone}\nEmail: {email}',
+                os.getenv('EMAIL_HOST_USER'),
+                ['eerichmondspam@gmail.com'],
+                fail_silently=False
+            )
+            status_message_for_user = "Message sent successfully! We will get back to you as soon as possible, Mr. Bot"
+            messages.success(request, status_message_for_user)
+            return redirect('index')
 
         try:
             send_mail(
@@ -360,17 +362,6 @@ def consignment_view(request):
 def evaluations_view(request, form_name):
     if request.method == 'POST':
         load_dotenv('./website/keys.env')
-        if request.POST["lastName"] != "":
-            send_mail(
-                'bot deterred',
-                '',
-                os.getenv('EMAIL_HOST_USER'),
-                ['eerichmondspam@gmail.com'],
-                fail_silently=False
-            )
-            status_message_for_user = "Message sent successfully! We will get back to you as soon as possible, Mr. Bot"
-            messages.success(request, status_message_for_user)
-            return redirect('index')
 
         name = request.POST['name']
         phone = request.POST['phone']
@@ -390,6 +381,22 @@ def evaluations_view(request, form_name):
             header = f"{name} replied to the \"Consignment\" form."
             short_header = "Consignment form"
         
+        if request.POST["lastName"] != "":
+            email_message = EmailMessage(
+                subject=f'bot deterred – {name}',
+                body=f'{header}\n\n--\n\nMake: {make}\nModel: {model}\nReference Number: {reference_number}\nCondition: {condition}\nContents: {contents}\n\nPhone number: {phone}\nEmail: {email}',
+                from_email=os.getenv('EMAIL_HOST_USER'),
+                to=['eerichmondspam@gmail.com']
+            )
+            for image in images:
+                if isinstance(image, InMemoryUploadedFile):
+                    email_message.attach(image.name, image.read(), image.content_type)
+            email_message.send(fail_silently=False)
+            
+            status_message_for_user = "Message sent successfully! We will get back to you as soon as possible, Mr. Bot"
+            messages.success(request, status_message_for_user)
+            return redirect('index')
+
         try:
             email_message = EmailMessage(
                 subject=f'New message from {name} ({short_header})',
